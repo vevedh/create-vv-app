@@ -1,0 +1,61 @@
+{
+  "host": "localhost",
+  "conf": "default",
+  "port": 80,
+  "public": "./dist",
+  "origins": [
+    "http://localhost:80",
+    "http://localhost:3430",
+    "http://localhost:9000",
+    "http://localhost:9001",
+    "https://localhost:3333"
+  ],
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "6rFZVHUrgEIBWszPeb2KNhu3dJoafXId",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "username",
+      "passwordField": "password"
+    },
+    "oauth": {
+      "google": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      },
+      "facebook": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      },
+      "twitter": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      },
+      "github": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      },
+      "auth0": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      }
+    }
+  },
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb://vvadmin:P%40ssw0rd@localhost:27029/vvbase?authSource=admin"
+}

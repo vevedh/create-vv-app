@@ -2,49 +2,24 @@
   <q-page class="fit row justify-center">
     <!-- content -->
 
-    <div
-      class="column justify-center self-center q-pb-xl q-px-md"
-      style="width: 400px"
-    >
-      <div
-        class="row justify-center self-center rounded-borders q-pb-md"
-        style="width: 200px"
-      >
+    <div class="column justify-center self-center q-pb-xl q-px-md" style="width: 400px">
+      <div class="row justify-center self-center rounded-borders q-pb-md" style="width: 200px">
         <q-img :src="url" spinner-color="white" class="rounded-borders" />
       </div>
       <q-card class="my-card" bordered>
-        <q-card-section
-          style="width: 100%"
-          class="text-center bg-primary text-white text-h5 q-py-xs"
-        >
+        <q-card-section style="width: 100%" class="text-center bg-primary text-white text-h5 q-py-xs">
           Identification
         </q-card-section>
         <q-separator />
         <q-card-section class="q-pb-none">
           <q-form class="q-px-xl">
-            <q-input
-              filled
-              bottom-slots
-              v-model="email"
-              label="*Utilisateur :"
-              :dense="dense"
-              lazy-rules
-            >
+            <q-input filled bottom-slots v-model="email" label="*Utilisateur :" :dense="dense" lazy-rules>
             </q-input>
-            <q-input
-              filled
-              bottom-slots
-              type="password"
-              v-model="password"
-              label="Mot de passe :"
-              :dense="dense"
-            >
+            <q-input filled bottom-slots type="password" v-model="password" label="Mot de passe :" :dense="dense">
             </q-input>
           </q-form>
         </q-card-section>
-        <q-card-actions
-          class="row items-center justify-center q-mt-md q-pt-none"
-        >
+        <q-card-actions class="row items-center justify-center q-mt-md q-pt-none">
           <div :hidden="!loading">
             <div class="col items-center justify-center">
               <div>
@@ -54,18 +29,10 @@
             </div>
           </div>
         </q-card-actions>
-        <q-card-actions
-          class="row items-center justify-center q-mt-md q-pt-none"
-        >
+        <q-card-actions class="row items-center justify-center q-mt-md q-pt-none">
           <div class="q-gutter-xl">
-            <q-btn
-              color="primary"
-              icon="lock"
-              text-color="white"
-              label="Connexion"
-              @click="onSubmit(email, password)"
-              :disable="email == '' || password == ''"
-            />
+            <q-btn color="primary" icon="lock" text-color="white" label="Connexion" @click="onSubmit(email, password)"
+              :disable="email == '' || password == ''" />
             <!--<q-btn color="primary" text-color="white" label="S'inscrire" @click="onRegister(email,password)" :disable="(email=='')&&(password=='')"/>-->
           </div>
         </q-card-actions>
@@ -115,7 +82,7 @@ const onSubmit = (email: string, password: string) => {
     } as any)
     .then(async (authres) => {
       console.log('Auth result :', authres);
-      await router.push('');
+      await router.push('/');
     })
     .catch((error: any) => {
       // eslint-disable-next-line no-console

@@ -18,6 +18,8 @@ import {
 } from 'unocss';
 import presetWind from '@unocss/preset-wind';
 
+import { feathers } from 'feathers-vite'
+
 export default configure((ctx) => {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -66,7 +68,7 @@ export default configure((ctx) => {
       // ignorePublicFolder: true,
       // minify: false,
       // polyfillModulePreload: true,
-      // distDir
+      distDir: './dist',
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
@@ -111,7 +113,7 @@ export default configure((ctx) => {
             transformers: [transformerDirectives(), transformerVariantGroup()],
           },
         ],
-        //UnoCSS(),
+        (ctx.dev === true) ? feathers({ app: './api/app_dev.js', port: 23030 }) : undefined, ,
         AutoImport({
           imports: [
             'vue',

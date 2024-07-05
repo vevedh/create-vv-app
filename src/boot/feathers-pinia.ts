@@ -10,4 +10,11 @@ export default boot(({ app }) => {
 
   app.use(pinia as any);
   app.use(api as any);
+
+
+
+
+
+
+
 });

@@ -5,15 +5,21 @@ A Veve App with unocss and autoimport
 ## Install the dependencies
 
 ```bash
-yarn
+bun
 # or
-npm install
+bun install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Exécuter avant le docker de la base de donnée mongodb
 
 ```bash
-quasar dev
+bun dev:mongodb
+```
+
+### Demarrage de l'application
+
+```bash
+bun dev
 ```
 
 ### Lint the files
@@ -21,7 +27,7 @@ quasar dev
 ```bash
 yarn lint
 # or
-npm run lint
+bun run lint
 ```
 
 ### Format the files
@@ -29,13 +35,13 @@ npm run lint
 ```bash
 yarn format
 # or
-npm run format
+bun run format
 ```
 
 ### Build the app for production
 
 ```bash
-quasar build
+bun run build
 ```
 
 ### Customize the configuration

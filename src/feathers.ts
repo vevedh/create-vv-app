@@ -10,8 +10,8 @@ type ServiceTypes = Record<string, FeathersService>;
 
 const socket = io(
   import.meta.env.DEV == true
-    ? 'https://svrapi.agglo.local'
-    : 'https://blog.dechavigny.fr',
+    ? 'http://localhost:23030'
+    : 'https://svrapi.agglo.local',
 );
 
 const storageKey = 'feathers-jwt';
