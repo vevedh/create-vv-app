@@ -1,1 +1,35 @@
 // app global css in SCSS form
+
+html.dark {
+  background: #121212;
+  color-scheme: dark;
+}
+
+body.body--dark {
+  background: #000;
+  --text-primary: #ff0000;
+  color-scheme: dark;
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: rgb(13, 148, 136);
+  opacity: 0.75;
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+  --background-color-primary: #1e1e1e;
+  --background-color-secondary: #2d2d30;
+  --accent-color: #3f3f3f;
+  --text-primary-color: #a90a0a;
+}

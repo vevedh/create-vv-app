@@ -1,6 +1,9 @@
 # Veve App (create-vv-app)
 
-A Veve App with unocss and autoimport
+Veve App est un modèle d'application Web multiplatform (quasar framework) + unocss and autoimport
+
+- [Quasar](https://quasar.dev)
+- [Unocss](https://unocss.dev/)
 
 ## Install the dependencies
 

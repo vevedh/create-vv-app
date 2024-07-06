@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
+    "dev": "dotenvx run -f .env -- quasar dev",
     "dev:mongodb": "dotenvx run -f .env -- docker compose  -f \"docker-compose-mongodb.yml\" up -d --build mongo",
     "build": "quasar build"
   },
@@ -32,6 +32,7 @@
     "axios": "^1.2.1",
     "connect-history-api-fallback": "^2.0.0",
     "feathers-pinia": "^4.5.4",
+    "kill-port": "^2.0.1",
     "pinia": "^2.1.7",
     "quasar": "^2.16.0",
     "socket.io-client": "^4.6.1",
@@ -40,6 +41,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.36",
     "@iconify-json/ion": "^1.1.18",
     "@iconify-json/logos": "^1.1.43",
     "@iconify-json/mdi": "^1.1.67",
@@ -51,6 +53,7 @@
     "@typescript-eslint/parser": "^6.6.0",
     "@unocss/cli": "^0.61.0",
     "@unocss/reset": "^0.61.0",
+    "@vueuse/core": "^10.11.0",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.0.0",

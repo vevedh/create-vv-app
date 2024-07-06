@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="auth.user" class="text-center items-justify items-center text-h5">
-      Utilisateur : {{ auth.user?.username }} connecté
+      Utilisateur : {{ auth.user?.username }} connecté : {{ t('success') }}
 
     </div>
     <br>
@@ -21,6 +21,7 @@
 import { computed, ref } from 'vue';
 import { Todo, Meta } from './models';
 
+const { t } = useI18n()
 const auth = useAuthStore()
 
 interface Props {

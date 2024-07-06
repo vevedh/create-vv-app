@@ -5,9 +5,9 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" class="animate animate-bounce"
           @click="toggleLeftDrawer" />
 
-        <q-toolbar-title class="dark:text-white text-red"> Quasar App </q-toolbar-title>
+        <q-toolbar-title class="dark:text-primary text-white"> Quasar App </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div> Quasar v{{ $q.version }}</div>
         <q-btn :color="$q.dark.isActive ? 'white' : 'dark'" flat round @click="$q.dark.toggle()"
           :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'" />
       </q-toolbar>
@@ -32,6 +32,8 @@ import { ref } from 'vue';
 import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
+
+
 
 defineOptions({
   name: 'MainLayout',
@@ -88,3 +90,20 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+<style scope>
+#app :is(.dark .dark\:bg-blue) {
+  --un-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--un-bg-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.dark .dark\:text-white {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+</style>

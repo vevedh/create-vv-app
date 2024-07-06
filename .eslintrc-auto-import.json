@@ -55,6 +55,7 @@
     "ignorableWatch": true,
     "inject": true,
     "injectLocal": true,
+    "isDark": true,
     "isDefined": true,
     "isProxy": true,
     "isReactive": true,
@@ -83,6 +84,8 @@
     "onUnmounted": true,
     "onUpdated": true,
     "pausableWatch": true,
+    "pinia": true,
+    "preferredDark": true,
     "provide": true,
     "provideLocal": true,
     "reactify": true,
@@ -115,6 +118,7 @@
     "toRef": true,
     "toRefs": true,
     "toValue": true,
+    "toggleDark": true,
     "triggerRef": true,
     "tryOnBeforeMount": true,
     "tryOnBeforeUnmount": true,
@@ -143,6 +147,7 @@
     "useAsyncState": true,
     "useAttrs": true,
     "useAuth": true,
+    "useAuthStore": true,
     "useBackup": true,
     "useBase64": true,
     "useBattery": true,
@@ -187,6 +192,8 @@
     "useEventSource": true,
     "useEyeDropper": true,
     "useFavicon": true,
+    "useFeathers": true,
+    "useFeathersService": true,
     "useFetch": true,
     "useFileDialog": true,
     "useFileSystemAccess": true,
@@ -311,10 +318,6 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true,
-    "useFeathers": true,
-    "useFeathersService": true,
-    "pinia": true,
-    "useAuthStore": true
+    "whenever": true
   }
 }

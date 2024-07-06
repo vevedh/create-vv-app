@@ -4,6 +4,7 @@
 <head>
   <title>
     <%= productName %>
+
   </title>
 
   <meta charset="utf-8" />
@@ -19,6 +20,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
   <link rel="icon" type="image/ico" href="favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 </head>
 
 <body>
@@ -150,7 +152,8 @@
   </style>
   <div id="apploading" class="app-loading">
     <div class="app-loading-wrap">
-      <img src="<%= process.env.LOGO_LOADING %>" class="app-loading-logo" alt="Logo" />
+
+      <img id="logo-loading" src="/fbavatar.jpeg" class="app-loading-logo" alt="Logo" />
       <div class="app-loading-dots">
         <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
       </div>

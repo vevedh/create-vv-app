@@ -209,8 +209,8 @@ export const mainApp = main()
 //console.log(import.meta.env.VITE_API_URL);
 
 // Bootstrap
-
-/*if (import.meta?.url?.endsWith(process.argv[1])) {
+/*
+if (import.meta?.url?.endsWith(process.argv[1])) {
   process.on('unhandledRejection', (reason, p) =>
     console.warn('[index.ts] Unhandled Rejection at: Promise ', p, reason),
   )
@@ -219,7 +219,7 @@ export const mainApp = main()
 
   await app.listen(port)
   logger.info('Feathers application démarrée sur http://%s:%d', host, port)
-}*/
-
+}
+*/
 
 
