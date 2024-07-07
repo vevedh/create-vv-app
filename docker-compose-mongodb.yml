@@ -2,13 +2,12 @@ services:
   mongo:
     image: mongo:latest
     expose:
-      - ${LISTEN_PORT}
+      - ${LISTEN_MONGODB_PORT}
     ports:
-      - ${LISTEN_PORT}:27017
+      - ${LISTEN_MONGODB_PORT}:27017
     networks:
       - db-net
     environment:
-      - LISTEN_PORT=${LISTEN_PORT:-27019}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME:-admdomain}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-domain972}
     volumes:

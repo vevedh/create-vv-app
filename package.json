@@ -11,9 +11,11 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "dotenvx run -f .env -- quasar dev",
+    "backend:docker": "dotenvx run -f .env -- nodemon --watch ./api --watch ./dist  ./api",
     "dev:mongodb": "dotenvx run -f .env -- docker compose  -f \"docker-compose-mongodb.yml\" up -d --build mongo",
+    "dev:docker": "dotenvx run -f .env -- quasar build && docker compose  -f \"docker-compose-prod.yml\" up -d",
     "dev:kill:mongodb": "dotenvx run -f .env -- docker kill create-vv-app-mongo-1",
-    "build": "quasar build"
+    "build": "dotenvx run -f .env -- quasar build"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.5.0",
@@ -35,6 +37,7 @@
     "connect-history-api-fallback": "^2.0.0",
     "feathers-pinia": "^4.5.4",
     "kill-port": "^2.0.1",
+    "nodemon": "^3.1.4",
     "pinia": "^2.1.7",
     "quasar": "^2.16.0",
     "socket.io-client": "^4.6.1",

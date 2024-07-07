@@ -19,7 +19,7 @@ bun install
 bun dev:mongodb
 ```
 
-### Demarrage de l'application
+### Demarrage de l'application en mode developpement
 
 ```bash
 bun dev
@@ -41,10 +41,16 @@ yarn format
 bun run format
 ```
 
-### Build the app for production
+### Compiler l'application pour la production
 
 ```bash
 bun run build
+```
+
+### Exécuter l'application dans votre Docker Desktop
+
+```
+bun dev:docker
 ```
 
 ### Customize the configuration

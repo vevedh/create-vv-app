@@ -1,0 +1,66 @@
+services:
+  frontend:
+    hostname: localhost
+    build:
+      context: .
+      target: production-stage
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    networks:
+      - netvvdemo
+    environment:
+      - NODE_ENV=production
+      - MAIL_URL=${MAIL_URL}
+      - MAIL_SMTP=${MAIL_SMTP}
+      - MAIL_SECRET=${MAIL_SECRET}
+    ports:
+      - 3481:80
+    #command: /bin/bash #/bin/sh -c "bun i -g @dotenvx/dotenvx && bun run build && bun run dev:prod"
+
+  backend:
+    hostname: localhost
+    #image: node:lts-alpine
+    build:
+      context: .
+      target: build
+    networks:
+      - netvvdemo
+    depends_on:
+      - mongo
+    ports:
+      - 3030:80
+    environment:
+      - MONGODB_URL=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongo:27017/${MONGO_BASENAME}?authSource=admin
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_BASENAME=${MONGO_BASENAME}
+      - MAIL_URL=${MAIL_URL}
+      - MAIL_SMTP=${MAIL_SMTP}
+      - MAIL_SECRET=${MAIL_SECRET}
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    command: bun backend:docker
+
+  mongo:
+    image: mongo:latest
+    expose:
+      - ${LISTEN_MONGODB_PORT}
+    ports:
+      - ${LISTEN_MONGODB_PORT}:27017
+    networks:
+      - netvvdemo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME= ${MONGO_USERNAME:-vvadmin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-Vvpass77}
+    volumes:
+      - ./data/mongod.conf:/etc/mongod.conf
+      - ./data/mongo/data:/data/db
+
+networks:
+  netvvdemo:

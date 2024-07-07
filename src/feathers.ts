@@ -8,10 +8,12 @@ import { pinia } from './stores/index';
 
 type ServiceTypes = Record<string, FeathersService>;
 
+console.log('env :', process.env)
+
 const socket = io(
   import.meta.env.DEV == true
     ? 'http://localhost:23030'
-    : 'https://svrapi.agglo.local',
+    : 'http://localhost:3030',
 );
 
 const storageKey = 'feathers-jwt';

@@ -15,7 +15,7 @@ KC_CLIENT_DEV=feathersjs-app
 # Nom du client de votre configuration Keycloak en mode production
 KC_CLIENT_PROD=portaildsi
 # Url de votre authentification Keycloak
-KC_URL=https://svrkeycloak.agglo.local:8443
+KC_URL=https://svrkeycloak.domain.local:8443
 # Nom du REALM de votre configuration Keycloak
 KC_REALM=REALM_NAME
 # Nom d'utilisateur pour l'accès initial page login de votre site

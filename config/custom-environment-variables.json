@@ -4,8 +4,30 @@
     "__format": "number"
   },
   "host": "HOSTNAME",
-  "authentication": {
-    "secret": "FEATHERS_SECRET"
+  "public": "PUBLIC_PATH",
+  "mailTransport": {
+    "host": "MAIL_HOST",
+    "port": "MAIL_PORT",
+    "auth": {
+      "user": "MAIL_USER",
+      "pass": "MAIL_PASS"
+    }
   },
+  "paginate": {
+    "default": "PAGE_DEFAULT",
+    "max": "PAGE_MAX"
+  },
+  "authentication": {
+    "secret": "FEATHERS_SECRET",
+    "ldap": {
+      "url": "LDAP_URL",
+      "bindDN": "LDAP_USER",
+      "bindCredentials": "LDAP_PASSWORD",
+      "searchBase": "LDAP_BASE_CN",
+      "searchFilter": "(|(uid={{username}})(sAMAccountName={{username}}))",
+      "certca": "CERTCA_PATH"
+    }
+  },
+  "dc": "ADMIN_SERVER",
   "mongodb": "MONGODB_URL"
 }
