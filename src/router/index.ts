@@ -16,8 +16,8 @@ import routes from './routes';
  * with the Router instance.
  */
 
-export default route(function (/* { store, ssrContext } */{ store }) {
-  console.log('Route Store :', store)
+export default route(function (/* { store, ssrContext } */ { store }) {
+  console.log('Route Store :', store);
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
@@ -42,7 +42,7 @@ export default route(function (/* { store, ssrContext } */{ store }) {
 
     await authStore.getPromise();
     await authStore.reAuthenticate();
-    console.log('Auth :', authStore);
+    console.log('Auth route :', authStore);
 
     // check auth and apply login redirect
     if (!authStore.user) {

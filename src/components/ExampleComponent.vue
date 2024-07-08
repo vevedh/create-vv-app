@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div v-if="auth.user" class="text-center items-justify items-center text-h5">
+    <div
+      v-if="auth.user"
+      class="text-center items-justify items-center text-h5"
+    >
       Utilisateur : {{ auth.user?.username }} connecté : {{ t('success') }}
-
     </div>
-    <br>
-    <p>{{ title }} </p>
+    <br />
+    <p>{{ title }}</p>
     <ul>
       <li v-for="todo in todos" :key="todo.id" @click="increment">
         {{ todo.id }} - {{ todo.content }}
@@ -21,8 +23,8 @@
 import { computed, ref } from 'vue';
 import { Todo, Meta } from './models';
 
-const { t } = useI18n()
-const auth = useAuthStore()
+const { t } = useI18n();
+const auth = useAuthStore();
 
 interface Props {
   title: string;

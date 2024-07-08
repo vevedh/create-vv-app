@@ -13,10 +13,10 @@ bun
 bun install
 ```
 
-### Exécuter avant le docker de la base de donnée mongodb
+### Exécuter avant le docker de la base de donnée mongodb (LISTEN_MONGODB_PORT) et le backend (LISTEN_BACKEND_PORT)
 
 ```bash
-bun dev:mongodb
+bun dev:backend
 ```
 
 ### Demarrage de l'application en mode developpement

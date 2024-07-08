@@ -20,7 +20,7 @@ onMounted(async () => {
   const { api } = useFeathers();
   const User = api.service('users');
   if (import.meta.env.DEV) {
-    console.log('Dev mode')
+    console.log('Dev mode');
     const currentUser: any = await User.find({
       paginate: false,
       query: {
@@ -48,7 +48,6 @@ onMounted(async () => {
 
     console.log('Feathersjs Auth :', authStore.isAuthenticated);
     console.log('Feathersjs the user :', authStore.user);*/
-
   }
 });
 </script>

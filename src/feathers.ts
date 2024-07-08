@@ -8,11 +8,11 @@ import { pinia } from './stores/index';
 
 type ServiceTypes = Record<string, FeathersService>;
 
-console.log('env :', process.env)
+console.log('env :', process.env);
 
 const socket = io(
   import.meta.env.DEV == true
-    ? 'http://localhost:23030'
+    ? `http://localhost:${process.env.LISTEN_BACKEND_PORT}`
     : 'http://localhost:3030',
 );
 

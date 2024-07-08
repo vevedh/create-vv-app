@@ -3,7 +3,7 @@ import { api, feathersClient } from '../feathers';
 
 // Provides access to Feathers Client(s)
 export const useFeathers = () => {
-    return { api, feathersClient };
+  return { api, feathersClient };
 };
 
 /**
@@ -11,11 +11,11 @@ export const useFeathers = () => {
  * @param servicePath the path of the service
  */
 export const useFeathersService = (
-    servicePath: string,
-    clientAlias = 'api',
+  servicePath: string,
+  clientAlias = 'api',
 ) => {
-    const clients = useFeathers();
-    const client = clients[clientAlias as keyof typeof clients];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return client.service(servicePath as any);
+  const clients = useFeathers();
+  const client = clients[clientAlias as keyof typeof clients];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return client.service(servicePath as any);
 };

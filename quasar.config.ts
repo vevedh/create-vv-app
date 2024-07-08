@@ -19,9 +19,15 @@ import {
 import presetWind from '@unocss/preset-wind';
 //import { kill } from 'node:process';
 
-import { feathers } from 'feathers-vite'
+import { feathers } from 'vite-plugin-feathers';//'feathers-vite';
+
+//import { viteExpressApp } from '@eslym/vite-plugin-express-app';
+//import { main } from './api/app_dev.js';
 
 export default configure((ctx) => {
+
+
+  console.log('Context :', ctx)
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -29,10 +35,10 @@ export default configure((ctx) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['unocss', 'i18n', 'axios', 'feathers-pinia'],
+    boot: ['unocss', 'i18n', 'axios', 'feathers-pinia', 'vmotion'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-    css: ['app.scss'],//
+    css: ['app.scss'], //
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -64,7 +70,9 @@ export default configure((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        LISTEN_BACKEND_PORT: process.env.LISTEN_BACKEND_PORT
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -82,20 +90,19 @@ export default configure((ctx) => {
               dark: {
                 color: {
                   main: '#fff',
-                }
+                },
               },
               light: {
                 color: {
                   main: '#f1f1f1',
-                }
-              }
+                },
+              },
             },
-
 
             presets: [
               presetMini({
                 dark: 'class',
-                prefix: 'vv-'
+                prefix: 'vv-',
               }),
               presetWind(),
               presetAttributify({ prefix: 'vv-', prefixedOnly: true }),
@@ -125,7 +132,6 @@ export default configure((ctx) => {
                       (i) => i.default,
                     ),
                 },
-
               }),
               presetWebFonts(),
             ], // Presets
@@ -134,7 +140,9 @@ export default configure((ctx) => {
             safelist: 'prose prose-sm m-auto text-left'.split(' '),
           },
         ],
-        (ctx.dev === true) ? feathers({ app: './api/app_dev.js', port: 23030 }) : undefined,
+        /*((ctx.dev === true) && (import.meta.env?.SOCKET_URL != ''))
+          ? feathers({ app: './api/app_dev.js', port: 23030 })
+          : undefined,*/ //{ app: './api/app_dev.js', port: 23030 }express('./api/app_dev.js')express({ middlewareFiles: './api' })
         AutoImport({
           imports: [
             'vue',
@@ -143,6 +151,7 @@ export default configure((ctx) => {
             'vue/macros',
             '@vueuse/head',
             '@vueuse/core',
+
             feathersPiniaAutoImport,
             {
               quasar: ['uid', 'useQuasar'],

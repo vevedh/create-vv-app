@@ -1,6 +1,6 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/client.html
-import { feathers } from '@feathersjs/feathers'
-import authenticationClient from '@feathersjs/authentication-client'
+import { feathers } from '@feathersjs/feathers';
+import authenticationClient from '@feathersjs/authentication-client';
 
 /**
  * Returns a  client for the myapi app.
@@ -11,11 +11,11 @@ import authenticationClient from '@feathersjs/authentication-client'
  * @returns The Feathers client application
  */
 export const createClient = (connection, authenticationOptions = {}) => {
-  const client = feathers()
+  const client = feathers();
 
-  client.configure(connection)
-  client.configure(authenticationClient(authenticationOptions))
-  client.set('connection', connection)
+  client.configure(connection);
+  client.configure(authenticationClient(authenticationOptions));
+  client.set('connection', connection);
 
-  return client
-}
+  return client;
+};

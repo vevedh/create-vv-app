@@ -5,9 +5,12 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" class="animate animate-bounce"
           @click="toggleLeftDrawer" />
 
-        <q-toolbar-title class="dark:text-primary text-white"> Quasar App </q-toolbar-title>
+        <q-toolbar-title class="dark:text-primary text-white">
+          Quasar App
+        </q-toolbar-title>
 
-        <div> Quasar v{{ $q.version }}</div>
+        <div>Quasar v{{ $q.version }}</div>
+        <q-btn color="white" icon="logout" flat @click="logOut()" />
         <q-btn :color="$q.dark.isActive ? 'white' : 'dark'" flat round @click="$q.dark.toggle()"
           :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'" />
       </q-toolbar>
@@ -33,6 +36,10 @@ import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
 
+
+
+const auth = useAuthStore()
+const router = useRouter()
 
 
 defineOptions({
@@ -85,6 +92,11 @@ const linksList: EssentialLinkProps[] = [
 ];
 
 const leftDrawerOpen = ref(false);
+
+function logOut() {
+  auth.logout()
+  router.push('')
+}
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;

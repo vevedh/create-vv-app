@@ -6,7 +6,20 @@
       <div class="row justify-center self-center rounded-borders q-pb-md" style="width: 200px">
         <q-img :src="url" spinner-color="white" class="rounded-borders" />
       </div>
-      <q-card class="my-card" bordered>
+      <q-card class="my-card" bordered v-motion :initial="{
+          opacity: 0,
+          y: -100,
+        }" :enter="{
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: 'spring',
+            stiffness: 350,
+            delay: 1500,
+
+          },
+
+        }" :duration="1500">
         <q-card-section style="width: 100%" class="text-center bg-primary text-white text-h5 q-py-xs">
           Identification
         </q-card-section>
@@ -49,6 +62,9 @@ const authStore = useAuthStore();
 const router = useRouter();
 const { api } = useFeathers();
 
+
+const variant = ref()
+
 console.log('Api :', api);
 
 //import { mapGetters,mapState } from 'vuex'
@@ -90,8 +106,6 @@ const onSubmit = (email: string, password: string) => {
       //dialogError.value = true
     });
 };
-
-
 </script>
 
 <style lang="scss">
