@@ -45,7 +45,9 @@ export const api = createPiniaClient(feathersClient, {
     return data;
   },
   syncWithStorage: true,
-  //services: {},
+  services: {
+    
+  },
   whitelist: [],
   paramsForServer: [],
   skipGetIfExists: true,

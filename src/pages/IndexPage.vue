@@ -1,11 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
   </q-page>
 </template>
 
@@ -13,6 +8,13 @@
 import { ref } from 'vue';
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
+
+const { feathersClient } = useFeathers()
+
+console.log('Feathers services', feathersClient)
+
+
+console.log('Feathers Client :', feathersClient)
 
 defineOptions({
   name: 'IndexPage',
