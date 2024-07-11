@@ -39,10 +39,10 @@ export default defineConfig({
       '/guide/': sidebarGuide(),
       '/config/': sidebarConfig(),
     },
-    blog: {
-      title: 'My Blog',
-      description: 'Some articles for sample Blog',
-    },
+    /* blog: {
+       title: 'My Blog',
+       description: 'Some articles for sample Blog',
+     }, */
 
   },
   title: 'Create VVApp Starter',
@@ -69,7 +69,7 @@ function nav() {
   return [
     { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
     { text: 'Configs', link: '/config/', activeMatch: '/config/' },
-    { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
+    //{ text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
     {
       text: 'Documentations Externes',
       items: [
@@ -80,6 +80,14 @@ function nav() {
         {
           text: 'UnoCSS',
           link: 'https://uno.antfu.me',
+        },
+        {
+          text: 'Quasar',
+          link: 'https://quasar.dev',
+        },
+        {
+          text: 'FeathersJS',
+          link: 'https://feathersjs.com',
         },
       ],
     },
