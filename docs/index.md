@@ -24,6 +24,6 @@ features:
   - title: 'UnoCSS: Moteur CSS atomique instantané à la demande
       Personnalisable · Puissant · Rapide · Dynamique'
     details: UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind.
-  - title: 'Blog Demo included'
-    details: Posts and Authors as sample predefinded. Composables for accessing data included.
+  #- title: 'Blog Demo included'
+  #  details: Posts and Authors as sample predefinded. Composables for accessing data included.
 ---
