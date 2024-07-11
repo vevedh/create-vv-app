@@ -1,0 +1,13 @@
+image: node:20.11.0
+pages:
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - bun install # npm install
+    - bun docs:build # npm run docs:build
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

@@ -19,7 +19,7 @@ import {
 import presetWind from '@unocss/preset-wind';
 //import { kill } from 'node:process';
 
-import { feathers } from 'vite-plugin-feathers';//'feathers-vite';
+
 
 //import { viteExpressApp } from '@eslym/vite-plugin-express-app';
 //import { main } from './api/app_dev.js';
