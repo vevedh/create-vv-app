@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: VitePress
-  text: Starter Template
-  tagline: Blog included. Built on top of UnoCSS and Anu.
+  name: Create VVApp
+  text: Modele d'application cross-platform
+  tagline: Ce Modèle est Cross-platform. Construit avec Quasar Framework et Feathersjs en Backend.
   actions:
     - theme: brand
       text: Guide
@@ -12,16 +12,18 @@ hero:
     - theme: alt
       text: Configs
       link: /config/
-    - theme: alt
-      text: Blog Demo
-      link: /blog/
+    #- theme: alt
+    #  text: Blog Demo
+    #  link: /blog/
 
 features:
-- title: "VitePress: Designed to be simplicity first"
-  details: With Markdown-centered content, it's built to help you focus on writing and deployed with minimum configuration.
-- title: "UnoCSS: The instant on-demand Atomic CSS engine"
-  details: UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind.
-- title: "Blog Demo included"
-  details: Posts and Authors as sample predefinded. Composables for accessing data included.
+  - title: 'Quasar: framework responsive cross-platform'
+    details:
+      Framework open-source basé sur Vue.js sous licence MIT, qui vous permet, en tant que développeur web, de créer rapidement des sites web/applications responsive++.<br>
+      Ecrire du code en une seule fois et déployer simultanément en site Web, Application Mobile et Bureau.
+  - title: 'UnoCSS: Moteur CSS atomique instantané à la demande
+      Personnalisable · Puissant · Rapide · Dynamique'
+    details: UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind.
+  - title: 'Blog Demo included'
+    details: Posts and Authors as sample predefinded. Composables for accessing data included.
 ---
-
