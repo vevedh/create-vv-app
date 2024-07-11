@@ -24,7 +24,7 @@ bun
 bun install
 ```
 
-### Creer et Renseigner votre fichier ".env"
+## Creer et Renseigner votre fichier ".env"
 
 ```
 # Adresse d'accès à la base mongodb
@@ -53,43 +53,47 @@ SUPER_ADM_ID=admuser
 SUPER_ADM_PWD=passuser
 ```
 
-### Exécuter le backend Feathersjs et la base de donnée Mongodb (LISTEN_MONGODB_PORT) et le backend (LISTEN_BACKEND_PORT)
+## Exécuter le backend Feathersjs et la base de donnée Mongodb (LISTEN_MONGODB_PORT) et le backend (LISTEN_BACKEND_PORT)
 
 ```bash
 bun dev:backend
 ```
 
-### Demarrage de l'application en mode developpement
+## Demarrage de l'application en mode developpement
 
 ```bash
 bun dev
 ```
 
-### Lint (nettoyer le code) sur les fichiers
+## Lint (nettoyer le code) sur les fichiers
 
 ```bash
 bun run lint
 ```
 
-### Mettre en forme les fichiers
+## Mettre en forme les fichiers
 
 ```bash
 
 bun run format
 ```
 
-### Compiler l'application pour la production
+## Compiler l'application pour la production
 
 ```bash
 bun run build
 ```
 
-### Exécuter l'application dans votre Docker Desktop
+## Exécuter l'application dans votre Docker Desktop
 
 ```
 bun dev:docker
 ```
 
-### Customize the configuration
+## Modifier la configuration du Frondend
 
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+Voir [Configuration quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+## Modifier le Backend
+
+Voir [Configuration Feathersjs](https://feathersjs.com)
