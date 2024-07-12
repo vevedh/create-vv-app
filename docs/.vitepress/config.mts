@@ -2,8 +2,9 @@ import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 import { fileURLToPath } from 'node:url'
+import { withPwa } from '@vite-pwa/vitepress'
 
-export default defineConfig({
+export default withPwa(defineConfig({
   base: '/create-vv-app/',
   head: [
 
@@ -63,7 +64,14 @@ export default defineConfig({
       }),
     ],
   },
-})
+  pwa: {
+    strategies: 'generateSW', // <== if omitted, defaults to `generateSW`  
+    workbox: { /* your workbox configuration if any */ },
+    experimental: {
+      includeAllowlist: true
+    }
+  }
+}))
 
 function nav() {
   return [
