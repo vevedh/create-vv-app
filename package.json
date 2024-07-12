@@ -19,6 +19,7 @@
     "dev:mongodb": "dotenvx run -f .env -- docker compose  -f \"docker-compose-mongodb.yml\" up -d --build mongo",
     "dev:docker": "dotenvx run -f .env -- quasar build && docker compose  -f \"docker-compose-prod.yml\" up -d",
     "dev:kill:mongodb": "dotenvx run -f .env -- docker kill create-vv-app-mongo-1",
+    "dev:icons": "icongenie generate -i src/assets/fbavatar.png",
     "build": "dotenvx run -f .env -- quasar build"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "@feathersjs/transport-commons": "^5.0.27",
     "@quasar/cli": "^2.4.1",
     "@quasar/extras": "^1.16.4",
+    "@quasar/icongenie": "^4.0.0",
     "@vueuse/motion": "^2.2.3",
     "axios": "^1.2.1",
     "concurrently": "^8.2.2",
