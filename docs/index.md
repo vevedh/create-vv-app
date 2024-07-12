@@ -23,7 +23,7 @@ features:
       Ecrire du code en une seule fois et déployer simultanément en site Web, Application Mobile et Bureau.
   - title: 'UnoCSS: Moteur CSS atomique instantané à la demande
       Personnalisable · Puissant · Rapide · Dynamique'
-    details: UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind.
+    details: UnoCSS est un moteur atomique-CSS plutôt qu'un framework. Tout est conçu dans un souci de flexibilité et de performance
   #- title: 'Blog Demo included'
   #  details: Posts and Authors as sample predefinded. Composables for accessing data included.
 ---

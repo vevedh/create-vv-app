@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      v-if="auth.user"
-      class="text-center items-justify items-center text-h5"
-    >
+    <div v-if="auth.user" class="text-center items-justify items-center text-h5">
       Utilisateur : {{ auth.user?.username }} connecté : {{ t('success') }}
     </div>
     <br />
@@ -22,6 +19,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Todo, Meta } from './models';
+
+const { $q } = useDark()
+
+console.log($q.dark.mode)
 
 const { t } = useI18n();
 const auth = useAuthStore();

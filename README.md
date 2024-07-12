@@ -1,5 +1,7 @@
 # Veve App (create-vv-app)
 
+[documentation](https://vevedh.github.io/create-vv-app/ "Guide d'utilisation")
+
 Veve App est un modèle d'application Web multiplatform (quasar framework) + unocss and autoimport
 
 - [Quasar](https://quasar.dev)
