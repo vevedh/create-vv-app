@@ -7,16 +7,9 @@ import { configure } from 'quasar/wrappers';
 import { fileURLToPath } from 'node:url';
 import { feathersPiniaAutoImport } from 'feathers-pinia';
 import AutoImport from 'unplugin-auto-import/vite';
-import {
-  presetAttributify,
-  presetIcons,
-  presetUno,
-  presetWebFonts,
-  presetMini,
-  transformerDirectives,
-  transformerVariantGroup,
-} from 'unocss';
-import presetWind from '@unocss/preset-wind';
+//import { presetUno } from '@unocss/preset-uno'
+
+
 //import { kill } from 'node:process';
 
 
@@ -86,58 +79,7 @@ export default configure((ctx) => {
         [
           'unocss/vite',
           {
-            theme: {
-              dark: {
-                color: {
-                  main: '#fff',
-                },
-              },
-              light: {
-                color: {
-                  main: '#f1f1f1',
-                },
-              },
-            },
 
-            presets: [
-              presetMini({
-                dark: 'class',
-                prefix: 'vv-',
-              }),
-              presetWind(),
-              presetAttributify({ prefix: 'vv-', prefixedOnly: true }),
-              presetUno(),
-              presetIcons({
-                scale: 1.2,
-                warn: true,
-                collections: {
-                  carbon: () =>
-                    import('@iconify-json/carbon/icons.json').then(
-                      (i) => i.default,
-                    ),
-                  mdi: () =>
-                    import('@iconify-json/mdi/icons.json').then(
-                      (i) => i.default,
-                    ),
-                  logos: (): any =>
-                    import('@iconify-json/logos/icons.json').then(
-                      (i) => i.default,
-                    ),
-                  ion: () =>
-                    import('@iconify-json/ion/icons.json').then(
-                      (i) => i.default,
-                    ),
-                  si: (): any =>
-                    import('@iconify-json/simple-icons/icons.json').then(
-                      (i) => i.default,
-                    ),
-                },
-              }),
-              presetWebFonts(),
-            ], // Presets
-            injectReset: true,
-            transformers: [transformerDirectives(), transformerVariantGroup()],
-            safelist: 'prose prose-sm m-auto text-left'.split(' '),
           },
         ],
         /*((ctx.dev === true) && (import.meta.env?.SOCKET_URL != ''))

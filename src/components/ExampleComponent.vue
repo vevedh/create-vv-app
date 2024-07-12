@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="auth.user" class="text-center items-justify items-center text-h5">
+    <div v-if="auth.user" class="text-center items-justify items-center text-h5 light:text-amber dark:text-blue">
       Utilisateur : {{ auth.user?.username }} connecté : {{ t('success') }}
     </div>
     <br />
@@ -20,7 +20,7 @@
 import { computed, ref } from 'vue';
 import { Todo, Meta } from './models';
 
-const { $q } = useDark()
+const $q = useQuasar()
 
 console.log($q.dark.mode)
 
