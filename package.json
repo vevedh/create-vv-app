@@ -6,6 +6,21 @@
   "author": "vevedh <vevedh@gmail.com>",
   "type": "module",
   "private": true,
+  "feathers": {
+    "language": "js",
+    "packager": "bun",
+    "database": "mongodb",
+    "framework": "express",
+    "transports": [
+      "rest",
+      "websockets"
+    ],
+    "schema": false
+  },
+  "directories": {
+    "lib": "api",
+    "test": "test"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",

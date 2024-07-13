@@ -40,12 +40,13 @@ export const useAuthStore = defineStore('auth', () => {
     ...auth, isDSI: isDSI, logout: async () => {
       try {
         await auth.logout()
+        router.push('/login')
       } catch (error) {
 
       }
 
       //auth.loginRedirect = null
-      await router.push('')
+      await router.push('/login')
     }
   };
 });

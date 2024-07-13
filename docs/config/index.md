@@ -6,6 +6,8 @@ next:
   text: 'Suivant'
 ---
 
+#### Les Base de la première configuration
+
 ## Installer le package manager "bun"
 
 ```
@@ -15,8 +17,6 @@ npm i -g bun
 ## Installer les dépendences
 
 ```bash
-bun
-# or
 bun install
 ```
 

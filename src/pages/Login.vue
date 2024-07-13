@@ -7,19 +7,19 @@
         <q-img :src="url" spinner-color="white" class="rounded-borders" />
       </div>
       <q-card class="my-card" bordered v-motion :initial="{
-          opacity: 0,
-          y: -100,
-        }" :enter="{
-          opacity: 1,
-          y: 0,
-          transition: {
-            type: 'spring',
-            stiffness: 350,
-            delay: 1500,
+        opacity: 0,
+        y: -100,
+      }" :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          type: 'spring',
+          stiffness: 350,
+          delay: 1500,
 
-          },
+        },
 
-        }" :duration="1500">
+      }" :duration="1500">
         <q-card-section style="width: 100%" class="text-center bg-primary text-white text-h5 q-py-xs">
           Identification
         </q-card-section>
@@ -69,9 +69,7 @@ console.log('Api :', api);
 
 //import { mapGetters,mapState } from 'vuex'
 console.log('Auth login:', authStore);
-if (authStore?.user) {
-  router.push('');
-}
+
 
 defineOptions({
   name: 'LonginPage',

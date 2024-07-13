@@ -1,9 +1,7 @@
 services:
   frontend:
     hostname: localhost
-    build:
-      context: .
-      target: production-stage
+    image: vevedh/create-vv-app:latest
     depends_on:
       - backend
     volumes:
@@ -19,14 +17,10 @@ services:
       - MAIL_SECRET=${MAIL_SECRET}
     ports:
       - 3481:80
-    #command: /bin/bash #/bin/sh -c "bun i -g @dotenvx/dotenvx && bun run build && bun run dev:prod"
 
   backend:
     hostname: localhost
-    #image: node:lts-alpine
-    build:
-      context: .
-      target: build
+    image: vevedh/create-vv-app:backend
     networks:
       - netvvdemo
     depends_on:

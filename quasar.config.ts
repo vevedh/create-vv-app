@@ -20,7 +20,9 @@ import AutoImport from 'unplugin-auto-import/vite';
 export default configure((ctx) => {
 
 
-  console.log('Context :', ctx)
+  console.log('Context :', process.env.LOGO_PATH)
+
+
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -64,7 +66,8 @@ export default configure((ctx) => {
       // publicPath: '/',
       // analyze: true,
       env: {
-        LISTEN_BACKEND_PORT: process.env.LISTEN_BACKEND_PORT
+        LISTEN_BACKEND_PORT: process.env.LISTEN_BACKEND_PORT,
+        LOGO_PATH: process.env.LOGO_PATH
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
