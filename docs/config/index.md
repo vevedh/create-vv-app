@@ -6,7 +6,7 @@ next:
   text: 'Suivant'
 ---
 
-#### Les Base de la première configuration
+# Les Base de la première configuration
 
 ## Installer le package manager "bun"
 
@@ -20,7 +20,13 @@ npm i -g bun
 bun install
 ```
 
-## Creer et Renseigner votre fichier ".env"
+## Création automatique du fichier .env
+
+```
+bun gen:env
+```
+
+## Création manuelle du fichier ".env"
 
 ```
 # Adresse d'accès à la base mongodb

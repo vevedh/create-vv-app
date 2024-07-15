@@ -35,6 +35,7 @@
     "dev:docker": "dotenvx run -f .env -- quasar build && docker compose  -f \"docker-compose-prod.yml\" up -d",
     "dev:kill:mongodb": "dotenvx run -f .env -- docker kill create-vv-app-mongo-1",
     "dev:icons": "icongenie generate -i src/assets/fbavatar.png",
+    "gen:env": "phasme generate env",
     "build": "dotenvx run -f .env -- quasar build"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "@blocksuite/presets": "^0.16.0-canary-202407081104-c31c777",
     "@blocksuite/store": "^0.16.0-canary-202407081104-c31c777",
     "@dotenvx/dotenvx": "^1.5.0",
+    "@featherscloud/pinion": "^0.5.4",
     "@feathersjs/authentication-client": "^5.0.27",
     "@feathersjs/authentication-local": "^5.0.27",
     "@feathersjs/commons": "^5.0.27",
@@ -54,6 +56,7 @@
     "@feathersjs/socketio": "^5.0.27",
     "@feathersjs/socketio-client": "^5.0.27",
     "@feathersjs/transport-commons": "^5.0.27",
+    "@phasme/cli": "^1.0.26",
     "@quasar/cli": "^2.4.1",
     "@quasar/extras": "^1.16.4",
     "@quasar/icongenie": "^4.0.0",
