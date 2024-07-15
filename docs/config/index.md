@@ -8,6 +8,20 @@ next:
 
 # Les Base de la première configuration
 
+## Possibilité de créer directement l'application sans utiliser git
+
+> Installer globalement le package @phasme/cli
+>
+> ```
+>
+> npm i -g @phasme/cli
+> ```
+
+- Une fois le package _@phasme/cli_ installé créer une nouvelle à partir du template avec la commande suivante:
+  ```
+  npx phasme generate app
+  ```
+
 ## Installer le package manager "bun"
 
 ```
