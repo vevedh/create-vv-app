@@ -38,6 +38,8 @@ bun install
 
 ```
 bun gen:env
+# ou
+npx phasme generate env
 ```
 
 ## Création manuelle du fichier ".env"
