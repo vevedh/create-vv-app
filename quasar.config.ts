@@ -7,6 +7,7 @@ import { configure } from 'quasar/wrappers';
 import { fileURLToPath } from 'node:url';
 import { feathersPiniaAutoImport } from 'feathers-pinia';
 import AutoImport from 'unplugin-auto-import/vite';
+import path from 'node:path';
 //import { presetUno } from '@unocss/preset-uno'
 
 
@@ -35,6 +36,7 @@ export default configure((ctx) => {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'], //
 
+
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
@@ -51,12 +53,15 @@ export default configure((ctx) => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+
       target: {
         browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
         node: 'node20',
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+
+
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -75,7 +80,12 @@ export default configure((ctx) => {
       // polyfillModulePreload: true,
       distDir: './dist',
 
-      // extendViteConf (viteConf) {},
+      extendViteConf(viteConf: any, { isServer, isClient }) {
+        Object.assign(viteConf.resolve.alias, {
+          '@': path.join(__dirname, './src'),
+          '~': path.join(__dirname, './src')
+        })
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
