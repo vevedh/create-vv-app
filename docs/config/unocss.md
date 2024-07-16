@@ -1,3 +1,17 @@
+# UnoCSS - definir une couleur dégradée
+
+```
+class="bg-gradient-to-r from-violet-600 to-indigo-600"
+```
+
+> Outils d'aide : [Tailwind CSS Gradient Generator (tailwindcomponents.com)](https://tailwindcomponents.com/gradient-generator/)
+
+# UnoCSS - gestion facile du theme sombre
+
+```
+class="dark:text-white text-dark"
+```
+
 # UnoCSS Configurations
 
 UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind. There are no core utilities in UnoCSS, all functionalities are provided via presets.
