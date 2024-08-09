@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A Veve App with unocss and autoimport",
   "productName": "Veve App",
-  "homepage": "https://github.com/vevedh/create-vv-app",
+  "homepage": "https://vevedh.github.com/create-vv-app",
   "author": "vevedh <vevedh@gmail.com>",
   "type": "module",
   "private": true,
