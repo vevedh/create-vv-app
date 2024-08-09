@@ -9,10 +9,28 @@ import { ref } from 'vue';
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 
+const appStore = useAppStore();
+
 const { feathersClient } = useFeathers()
 
 console.log('Feathers services', feathersClient)
 
+const settings = ref({
+  darkMode: true,
+  notifications: true,
+  bgcolor: 'red',
+})
+
+
+const saveSettings = async () => {
+  await appStore.writeSettings(settings.value)
+}
+
+onMounted(async () => {
+  //await appStore.writeSettings(settings.value)
+  await appStore.readSettings()
+  console.log('Settings :', appStore.settings)
+})
 
 console.log('Feathers Client :', feathersClient)
 
