@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM imbios/bun-node:latest as build
+FROM imbios/bun-node:latest AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN bun i -g @dotenvx/dotenvx
 EXPOSE 80
 
 
-FROM nginx:stable-alpine as production-stage
+FROM nginx:stable-alpine AS production-stage
 
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

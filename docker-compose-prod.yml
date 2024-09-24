@@ -1,7 +1,9 @@
 services:
   frontend:
     hostname: localhost
-    image: vevedh/create-vv-app:latest
+    #image: vevedh/create-vv-app:latest
+    build:
+      context: .
     depends_on:
       - backend
     volumes:
@@ -20,7 +22,10 @@ services:
 
   backend:
     hostname: localhost
-    image: vevedh/create-vv-app:backend
+    #image: vevedh/create-vv-app:backend
+    build:
+      context: .
+      target: build
     networks:
       - netvvdemo
     depends_on:

@@ -24,19 +24,13 @@ import * as kill from 'kill-port';
 //import nocache from 'nocache'
 //import { MongoClient } from 'mongodb'
 export const main = () => {
-
-
   //const kill = import('kill-port');
-
-  
 
   const app = express(feathers());
 
   if (app._isSetup) {
-    console.log('Configuration connexions :',app)
-    
+    console.log('Configuration connexions :', app);
   }
-
 
   // Load app configuration
   app.configure(configuration());
@@ -45,7 +39,16 @@ export const main = () => {
   //const host = app.get('host')
   //app.use(nocache())
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: app.get('origins'),
+      //origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      allowedHeaders: ['Access-Control-Allow-Origin'],
+      credentials: true,
+      //credentials: true,
+    }),
+  );
 
   app.use(json());
   app.use(urlencoded({ extended: true }));
@@ -200,20 +203,13 @@ export const main = () => {
 
   console.log('Configuration :', app.settings);
 
-  
   return app;
 };
-
-
 
 //console.log('Api meta :',import.meta)
 
 //console.log(import.meta.env.VITE_API_URL);
 
-
 // Bootstrap
-
-
-
 
 export const mainApp = main();

@@ -34,7 +34,7 @@
     "dev:backend": "dotenvx run -f .env -- docker compose  -f \"docker-compose-prod.yml\" up -d --build backend",
     "dev:mongodb": "dotenvx run -f .env -- docker compose  -f \"docker-compose-mongodb.yml\" up -d --build mongo",
     "dev:docker": "dotenvx run -f .env -- quasar build && docker compose  -f \"docker-compose-prod.yml\" up -d",
-    "dev:kill:mongodb": "dotenvx run -f .env -- docker kill create-vv-app-mongo-1",
+    "dev:kill:mongodb": "dotenvx run -f .env -- docker kill ${npm_package_name}",
     "dev:icons": "icongenie generate -i src/assets/fbavatar.png",
     "gen:env": "phasme generate env",
     "build": "dotenvx run -f .env -- quasar build"
