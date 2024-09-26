@@ -10,8 +10,6 @@ Veve App est un modèle d'application Web multiplatform (quasar framework) + uno
 ## Install the dependencies
 
 ```bash
-bun
-# or
 bun install
 ```
 

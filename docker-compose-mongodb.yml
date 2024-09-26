@@ -1,8 +1,6 @@
 services:
   mongo:
     image: mongo:latest
-    expose:
-      - ${LISTEN_MONGODB_PORT}
     ports:
       - ${LISTEN_MONGODB_PORT}:27017
     networks:
