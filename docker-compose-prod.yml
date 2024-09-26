@@ -53,8 +53,8 @@ services:
     networks:
       - netvvdemo
     environment:
-      - MONGO_INITDB_ROOT_USERNAME= ${MONGO_USERNAME:-vvadmin}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-Vvpass77}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME:-admdomain}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-domain972}
     volumes:
       - ./data/mongod.conf:/etc/mongod.conf
       - ./data/mongo/data:/data/db

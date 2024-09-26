@@ -1,23 +1,21 @@
 <script async setup lang="ts">
-import { onBeforeMount, onMounted, reactive, ref } from 'vue'
-import FVvGrid from './FVvGrid.vue'
+import { onBeforeMount, onMounted, ref } from 'vue';
 
 const props = defineProps<{
-  useapi: boolean
-  dbname: string
-  dbtable: string
-  vcolumns?: Array<any>
-}>()
+  useapi: boolean;
+  dbname: string;
+  dbtable: string;
+  vcolumns?: Array<any>;
+}>();
 
-const dataGrid = ref(null)
-const loadingGrid = ref(true)
+const loadingGrid = ref(true);
 // 'quasar-ui-qgrid/src/components/QGrid.vue'
 
-const { api } = useFeathers()
-const isDark = useDark()
-const selected = ref([])
+const { api } = useFeathers();
 
-const visible_columns = ref(props.vcolumns || [])// ref([])
+//const selected = ref([]);
+
+const visible_columns = ref(props.vcolumns || []); // ref([])
 
 // const visiblesc = computed(() => { return visible_columns.value })
 
@@ -30,7 +28,13 @@ const columns = ref([
     field: 'name',
     sortable: true,
   },
-  { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
+  {
+    name: 'calories',
+    align: 'center',
+    label: 'Calories',
+    field: 'calories',
+    sortable: true,
+  },
   { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
   { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
   { name: 'protein', label: 'Protein (g)', field: 'protein' },
@@ -40,7 +44,8 @@ const columns = ref([
     label: 'Calcium (%)',
     field: 'calcium',
     sortable: true,
-    sort: (a: string, b: string) => Number.parseInt(a, 10) - Number.parseInt(b, 10),
+    sort: (a: string, b: string) =>
+      Number.parseInt(a, 10) - Number.parseInt(b, 10),
   },
   {
     name: 'iron',
@@ -49,7 +54,7 @@ const columns = ref([
     sortable: true,
     sort: (a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10),
   },
-])
+]);
 
 const data = ref([
   {
@@ -152,61 +157,70 @@ const data = ref([
     calcium: '12%',
     iron: '6%',
   },
-])
+]);
 
+/*
 function GetSelected(Selected: never[]) {
-  selected.value = Selected
+  selected.value = Selected;
 }
 
 function changeData(values: never[]) {
-  console.log('Objets data :', Object.keys(values[0]))
+  console.log('Objets data :', Object.keys(values[0]));
 
   // Object.assign(dataGrid.value.visible_columns, Object.keys(values[0]))
 }
+  */
 
 onBeforeMount(async () => {
   if (props.useapi === true) {
     // await initLdap()
-    loadingGrid.value = true
-    console.log('API is enabled before:', api)
-    const db_data: any = await api.service(`mongo/${props.dbname}/${props.dbtable}`).find({ query: { $limit: 1000 } })
-    console.log('Données de la table before :', db_data)
-    visible_columns.value = Object.assign([], JSON.parse(JSON.stringify(Object.keys(db_data[0]))))
+    loadingGrid.value = true;
+    console.log('API is enabled before:', api);
+    const db_data: any = await api
+      .service(`mongo/${props.dbname}/${props.dbtable}`)
+      .find({ query: { $limit: 1000 } });
+    console.log('Données de la table before :', db_data);
+    visible_columns.value = Object.assign(
+      [],
+      JSON.parse(JSON.stringify(Object.keys(db_data[0]))),
+    );
   }
-})
+});
 
 onMounted(async () => {
   if (props.useapi === true) {
     // await initLdap()
-    console.log('API is enabled :', api)
-    const db_data: any = await api.service(`mongo/${props.dbname}/${props.dbtable}`).find({ query: { $limit: 1000 } })
-    console.log('Données de la table :', db_data)
+    console.log('API is enabled :', api);
+    const db_data: any = await api
+      .service(`mongo/${props.dbname}/${props.dbtable}`)
+      .find({ query: { $limit: 1000 } });
+    console.log('Données de la table :', db_data);
     // ----------------------------------------------------------------
-    const countkeys = db_data.map((o: any) => `${Object.keys(o).length}`)
-    console.log('Count keys :', countkeys)
-    const maxlen = Math.max(...countkeys)
-    const minlen = Math.min(...countkeys)
-    console.log('Nb max props :', maxlen)
-    console.log('Nb min props :', minlen)
+    const countkeys = db_data.map((o: any) => `${Object.keys(o).length}`);
+    console.log('Count keys :', countkeys);
+    const maxlen = Math.max(...countkeys);
+    const minlen = Math.min(...countkeys);
+    console.log('Nb max props :', maxlen);
+    console.log('Nb min props :', minlen);
     const maxCols = countkeys.findIndex(
       (item: any) => Number(item) == Number(maxlen),
-    )
+    );
 
-    console.log('Nb maxCols props :', maxCols)
-    const dbdata = Object.assign([], db_data)
+    console.log('Nb maxCols props :', maxCols);
+    const dbdata = Object.assign([], db_data);
 
-    console.log('Data max :', dbdata[maxCols])
+    console.log('Data max :', dbdata[maxCols]);
 
     const minCols = countkeys.findIndex(
       (item: any) => Number(item) == Number(minlen),
-    )
+    );
 
-    console.log('Data min :', dbdata[minCols])
-    const fusionObj = Object.assign({}, dbdata[maxCols], dbdata[minCols])
+    console.log('Data min :', dbdata[minCols]);
+    const fusionObj = Object.assign({}, dbdata[maxCols], dbdata[minCols]);
 
-    console.log('Fusion Obj :', fusionObj)
-    const cols = Object.assign([], Object.keys(fusionObj))
-    console.log('Columns :', cols)
+    console.log('Fusion Obj :', fusionObj);
+    const cols = Object.assign([], Object.keys(fusionObj));
+    console.log('Columns :', cols);
 
     // if (cols.length > 0)
     //  visible_columns.value = Object.assign([], columns.value.map(col => `${col.name}`))
@@ -215,29 +229,29 @@ onMounted(async () => {
     // dataGrid.visible_columns = Object.assign([], cols)
     // ------------------------------------------------
 
-    columns.value = cols.map(col => ({
+    columns.value = cols.map((col) => ({
       name: col,
       align: 'center',
       label: col,
       field: col,
       sortable: true,
-    }))
+    }));
     // visible_columns.value = Object.assign([], JSON.parse(JSON.stringify(cols)))
-    data.value = dbdata
+    data.value = dbdata;
   }
-})
+});
 
 watch(data, (newData, oldData) => {
   if (Array.isArray(newData) && newData.length > 0) {
-    console.log('Nouvelles Données de la table :', newData)
-    const entetes = JSON.parse(JSON.stringify(Object.keys(newData[0])))
+    console.log('Nouvelles Données de la table :', newData);
+    const entetes = JSON.parse(JSON.stringify(Object.keys(newData[0])));
     entetes.forEach((element: any) => {
-      visible_columns.value.push(element)
-    })
-    console.log('Entetes visibles :', visible_columns.value.values)
-    loadingGrid.value = false
+      visible_columns.value.push(element);
+    });
+    console.log('Entetes visibles :', visible_columns.value.values);
+    loadingGrid.value = false;
   }
-})
+});
 </script>
 
 <template>
@@ -258,5 +272,4 @@ watch(data, (newData, oldData) => {
         <q-spinner-gears size="50px" color="primary" />
       </q-inner-loading>
     </template> -->
-
 </template>

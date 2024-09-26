@@ -4,7 +4,7 @@ import { useAuth } from 'feathers-pinia';
 
 export const useAuthStore = defineStore('auth', () => {
   const { api } = useFeathers();
-  const router = useRouter()
+  const router = useRouter();
   /*
   const setup = async ({ user }) => {
       await sleep(500)
@@ -13,7 +13,6 @@ export const useAuthStore = defineStore('auth', () => {
       return { user, foo: 'bar' }
     }
   */
-
 
   const auth = useAuth({ api, servicePath: 'users' });
   if (auth && !auth.isAuthenticated) {
@@ -28,8 +27,8 @@ export const useAuthStore = defineStore('auth', () => {
       console.log('Auth :', auth.user.value);
       result = Array.isArray(auth.user.value?.memberOf)
         ? auth.user?.value.memberOf.find((o: any) =>
-          o.includes('Utilisateurs DSI'),
-        )?.length > 0
+            o.includes('Utilisateurs DSI'),
+          )?.length > 0
         : false;
     }
     return result;
@@ -37,17 +36,17 @@ export const useAuthStore = defineStore('auth', () => {
 
   console.log('Auth useAuthStore:', { ...auth, isDSI: isDSI });
   return {
-    ...auth, isDSI: isDSI, logout: async () => {
+    ...auth,
+    isDSI: isDSI,
+    logout: async () => {
       try {
-        await auth.logout()
-        router.push('/login')
-      } catch (error) {
-
-      }
+        await auth.logout();
+        router.push('/login');
+      } catch (error) {}
 
       //auth.loginRedirect = null
-      await router.push('/login')
-    }
+      await router.push('/login');
+    },
   };
 });
 
@@ -55,4 +54,4 @@ if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot));
 }
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+//const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
