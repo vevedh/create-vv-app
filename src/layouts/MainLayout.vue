@@ -2,8 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <q-header reveal elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" class="animate animate-bounce"
-          @click="toggleLeftDrawer" />
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          class="animate animate-bounce"
+          @click="toggleLeftDrawer"
+        />
 
         <q-toolbar-title class="dark:text-primary text-white">
           Quasar App
@@ -11,8 +18,13 @@
 
         <div>Quasar v{{ $q.version }}</div>
         <q-btn color="white" icon="logout" flat @click="logOut()" />
-        <q-btn :color="$q.dark.isActive ? 'white' : 'dark'" flat round @click="$q.dark.toggle()"
-          :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'" />
+        <q-btn
+          :color="$q.dark.isActive ? 'white' : 'dark'"
+          flat
+          round
+          @click="$q.dark.toggle()"
+          :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'"
+        />
       </q-toolbar>
     </q-header>
 
@@ -20,13 +32,21 @@
       <q-list>
         <q-item-label header> Essential Links </q-item-label>
 
-        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
+        <EssentialLink
+          v-for="link in linksList"
+          :key="link.title"
+          v-bind="link"
+        />
       </q-list>
     </q-drawer>
 
     <q-page-container>
       <router-view class="h-full" v-slot="{ Component }">
-        <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+        <transition
+          appear
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
           <component :is="Component" />
         </transition>
       </router-view>
@@ -40,11 +60,9 @@ import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
 
-
-
-const auth = useAuthStore()
-const router = useRouter()
-
+const $q = useQuasar();
+const auth = useAuthStore();
+const router = useRouter();
 
 defineOptions({
   name: 'MainLayout',
@@ -98,8 +116,8 @@ const linksList: EssentialLinkProps[] = [
 const leftDrawerOpen = ref(false);
 
 function logOut() {
-  auth.logout()
-  router.push('')
+  auth.logout();
+  router.push('');
 }
 
 function toggleLeftDrawer() {
