@@ -21,7 +21,7 @@ onMounted(async () => {
   const User = api.service('users');
   if (import.meta.env.DEV) {
     console.log('Dev mode');
-    const currentUser: any = await User.find({
+    /*const currentUser: any = await User.find({
       paginate: false,
       query: {
         username: process.env.SUPER_ADM_ID,
@@ -36,7 +36,7 @@ onMounted(async () => {
         password: process.env.SUPER_ADM_PWD,
       });
       console.log('Create user :', createUser);
-    }
+    }*/
     /*const authStore = useAuthStore();
     authStore.clearError();
     await authStore.getPromise();

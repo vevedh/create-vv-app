@@ -29,5 +29,7 @@
     }
   },
   "dc": "ADMIN_SERVER",
+  "site_adm_id": "SUPER_ADM_ID",
+  "site_adm_pwd": "SUPER_ADM_PWD",
   "mongodb": "MONGODB_URL"
 }

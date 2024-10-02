@@ -2,7 +2,7 @@
 import { authenticate } from '@feathersjs/authentication';
 import { UserService, getOptions } from './users.class.js';
 import { userPath, userMethods } from './users.shared.js';
-import { hooks, passwordHash } from '@feathersjs/authentication-local';
+import { hooks } from '@feathersjs/authentication-local';
 export * from './users.class.js';
 
 // A configure function that registers the service and its hooks via `app.configure`
@@ -18,7 +18,7 @@ export const user = (app) => {
   app.service(userPath).hooks({
     around: {
       all: [],
-      find: [], //authenticate('jwt')
+      find: [authenticate('jwt')], //
       get: [authenticate('jwt')],
       create: [hooks.hashPassword('password')],
       update: [authenticate('jwt')],
@@ -27,7 +27,16 @@ export const user = (app) => {
     },
     before: {
       all: [],
-      find: [],
+      find: [
+        (context) => {
+          /*const hasemail = context.arguments[0].query?.username;
+
+          if (hasemail == 'admin@domain.com' && context?.result?.total == 0) {
+            context.self.create({ username: hasemail, password: 'P@ssw0rd' });
+          }*/
+          return context;
+        },
+      ],
       get: [],
       create: [],
       patch: [],

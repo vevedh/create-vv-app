@@ -22,6 +22,12 @@
     "lib": "api",
     "test": "test"
   },
+  "files": [
+    "lib/client.js",
+    "lib/**/*.d.ts",
+    "lib/**/*.shared.js"
+  ],
+  "main": "api/client",
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
@@ -39,7 +45,8 @@
     "dev:icons": "icongenie generate -i src/assets/fbavatar.png",
     "gen:env": "phasme generate env",
     "gen:logo": "phasme generate logo",
-    "build": "dotenvx run -f .env -- quasar build"
+    "build": "dotenvx run -f .env -- quasar build",
+    "bundle:client": "npm pack --pack-destination ./public"
   },
   "dependencies": {
     "@blocksuite/blocks": "^0.16.0",

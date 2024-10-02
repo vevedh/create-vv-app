@@ -174,9 +174,24 @@ export const main = () => {
   app.hooks({
     setup: [
       async (context, next) => {
+        console.log('Setup adm id:', context.app.get('site_adm_id'));
+        console.log('Setup adm pwd:', context.app.get('site_adm_pwd'));
         // E.g. wait for MongoDB connection to complete
-        //const isMongo = await context.app.get('mongodbClient')
-        //console.log('isMongo',isMongo.client)
+        const isMongo = await context.app.get('mongodbClient');
+        //console.log('isMongo :', isMongo.isConnected());
+        const users = await context.app.service('users').find({
+          query: {
+            username: context.app.get('site_adm_id'),
+            $limit: 1,
+          },
+        });
+        console.log('Utilisateurs :', users);
+        if (users.total == 0) {
+          context.app.service('users').create({
+            username: context.app.get('site_adm_id'),
+            password: context.app.get('site_adm_pwd'),
+          });
+        }
         /* if (context.app.get('mongodbClient') && !isMongo) {
         //console.log('Base de donnée mongodb non accessible')
         try {

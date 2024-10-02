@@ -17,14 +17,17 @@ export class AdmindbService {
     const client = (await this.app.get('mongodbClient')).client;
     //return new Promise(async (resolve, reject) => {
     let res = null;
-    //logger.info("Client db : %j", await client.db(name));
+    logger.info('Client db : %j', await client.db(name));
   }
 
   async find(_params) {
     return new Promise(async (resolve, reject) => {
       logger.info('admindb:find : %j', _params);
       if (_params && Object.keys(_params.query)[0] === 'database') {
-        logger.info('admindb:Mongo database : %s', this.app.get('currentDatabase'));
+        logger.info(
+          'admindb:Mongo database : %s',
+          this.app.get('currentDatabase'),
+        );
         resolve(this.app.get('currentDatabase'));
       } else if (_params && Object.keys(_params.query)[0] === 'databases') {
         //logger.info('admindb:Mongo databases : %j',this.app.get('alldatabases'));
@@ -41,7 +44,7 @@ export class AdmindbService {
         //logger.info("Bases de données : %j", await db.listDatabases());
         const databases = Object.assign(
           [],
-          (await db.listDatabases()).databases
+          (await db.listDatabases()).databases,
         );
         //logger.info("Bases de données : %j", databases);
 
@@ -69,52 +72,63 @@ export class AdmindbService {
     //
   }
 
- 
-  async create( _params,data) {
+  async create(_params, data) {
     return new Promise((resolve, reject) => {
       logger.info('admindb:create : %j', _params);
       if (_params && _params.query.createdb && _params.query.collection) {
         const connection = this.app.get('mongodb');
         const database = new URL(connection).pathname.substring(1);
         logger.info('Create Base de donnée : ' + database);
-        logger.info('Create Base url de connexion : ' + this.app.get('mongodb'));
+        logger.info(
+          'Create Base url de connexion : ' + this.app.get('mongodb'),
+        );
         MongoClient.connect(connection).then(async (client) => {
-          
           try {
             const newDb = client.db(_params.query.createdb);
             await newDb.createCollection(_params.query.collection);
-            
-            // mise a jour des collections
-            const currentDB = client.db(_params.query.createdb)
 
-            if (!Object.keys(this.app.services).includes(`mongo/${_params.query.createdb}/collections`)) {
+            // mise a jour des collections
+            const currentDB = client.db(_params.query.createdb);
+
+            if (
+              !Object.keys(this.app.services).includes(
+                `mongo/${_params.query.createdb}/collections`,
+              )
+            ) {
               this.app.use(
                 `/mongo/${_params.query.createdb}/collections`,
                 dbMgmt.collection({ db: currentDB }),
-              )
+              );
             }
             //---------------------------------------
             // mise a jour du service de la collection
             //---------------------------------------
-            const cname = _params.query.collection
-            if (!Object.keys(this.app.services).includes(`mongo/${_params.query.createdb}/${cname}`)) {
-              logger.info('Creation du service : %j',`/mongo/${_params.query.createdb}/${cname}`)
+            const cname = _params.query.collection;
+            if (
+              !Object.keys(this.app.services).includes(
+                `mongo/${_params.query.createdb}/${cname}`,
+              )
+            ) {
+              logger.info(
+                'Creation du service : %j',
+                `/mongo/${_params.query.createdb}/${cname}`,
+              );
               // const mongo1Client = MongoClient.connect(app.get('mongodb')).then( (client) => {
               //const dbc = client.db(_params.query.createdb)
 
               this.app.use(
                 `/mongo/${_params.query.createdb}/${cname}`,
                 new MongoDBService({
-                  paginate: this.app.get('paginate'),//,
+                  paginate: this.app.get('paginate'), //,
                   multi: true,
                   Model: currentDB.collection(cname), // app.get('mongodbClient').then((dbi) => dbi.collection(cname))
                 }),
                 {
                   methods: ['find', 'get', 'create', 'patch', 'remove'],
                 },
-              )
+              );
             }
-            
+
             client.close();
 
             resolve({
@@ -131,80 +145,102 @@ export class AdmindbService {
       }
     });
   }
-  async remove(_params,data) {
+  async remove(_params, data) {
     return new Promise((resolve, reject) => {
-      if (_params && _params.query.dbname && (_params.query?.collection=='' || _params.query?.collection==undefined)) {
+      if (
+        _params &&
+        _params.query.dbname &&
+        (_params.query?.collection == '' ||
+          _params.query?.collection == undefined)
+      ) {
         const connection = this.app.get('mongodb');
         const database = new URL(connection).pathname.substring(1);
-        
-        logger.info('Delete Base url de connexion : ' + this.app.get('mongodb'));
+
+        logger.info(
+          'Delete Base url de connexion : ' + this.app.get('mongodb'),
+        );
         MongoClient.connect(connection).then(async (client) => {
           try {
-            const collections = client.db(_params.query.dbname).listCollections().toArray();
+            const collections = client
+              .db(_params.query.dbname)
+              .listCollections()
+              .toArray();
             /*
             collections.forEach((collection) => {
               logger.info("Delete collection : " + collection.name);
               client.db(_params.query.dbname).dropCollection(collection.name);
             });
             */
-           if ((await collections).length == 0) {
-            const deleteDb = client.db(_params.query.dbname).dropDatabase();
-            logger.info('Delete Base de donnée : %j ' + deleteDb);
-            if (!Object.keys(this.app.services).includes(`mongo/${_params.query.dbname}/collections`)) {
-              this.app.unuse(`/mongo/${_params.query.dbname}/collections`)
+            if ((await collections).length == 0) {
+              const deleteDb = client.db(_params.query.dbname).dropDatabase();
+              logger.info('Delete Base de donnée : %j ' + deleteDb);
+              if (
+                !Object.keys(this.app.services).includes(
+                  `mongo/${_params.query.dbname}/collections`,
+                )
+              ) {
+                this.app.unuse(`/mongo/${_params.query.dbname}/collections`);
+              }
+              resolve({
+                database: _params.query.dbname,
+                deleted: true,
+              });
+            } else {
+              resolve({
+                database: _params.query.dbname,
+                message: 'Base de donnée non vide',
+                deleted: false,
+              });
             }
-            resolve({
-              database:_params.query.dbname,
-              deleted: true,
-            });
-           } else {
-            resolve({
-              database:_params.query.dbname,
-              message:'Base de donnée non vide',
-              deleted: false,
-            });
-           }
-            
           } catch (error) {
             resolve(new BadRequest('Erreur dans la requête'));
           }
         });
       } else {
-        if (_params && _params.query.dbname && (_params.query?.collection!=='' || _params.query?.collection!==undefined)) {
+        if (
+          _params &&
+          _params.query.dbname &&
+          (_params.query?.collection !== '' ||
+            _params.query?.collection !== undefined)
+        ) {
           // Suppression d'une collection
           const connection = this.app.get('mongodb');
           const database = new URL(connection).pathname.substring(1);
-          
 
-          
-          MongoClient.connect(connection).then(async (client) => {
-            try {
-              const deleteCollection = client.db(_params.query.dbname).dropCollection(_params.query.collection);
-              logger.info('Delete collection : %j ' + deleteCollection);
-              if (!Object.keys(this.app.services).includes(`mongo/${_params.query.dbname}/${_params.query.collection}`)) {
-                this.app.unuse(`/mongo/${_params.query.dbname}/${_params.query.collection}`)
+          MongoClient.connect(connection)
+            .then(async (client) => {
+              try {
+                const deleteCollection = client
+                  .db(_params.query.dbname)
+                  .dropCollection(_params.query.collection);
+                logger.info('Delete collection : %j ' + deleteCollection);
+                if (
+                  !Object.keys(this.app.services).includes(
+                    `mongo/${_params.query.dbname}/${_params.query.collection}`,
+                  )
+                ) {
+                  this.app.unuse(
+                    `/mongo/${_params.query.dbname}/${_params.query.collection}`,
+                  );
+                }
+                resolve({
+                  database: _params.query.dbname,
+                  collection: _params.query.collection,
+                  deleted: true,
+                });
+              } catch (error) {
+                resolve(new BadRequest('Erreur dans la requête'));
               }
-              resolve({
-                database:_params.query.dbname,
-                collection:_params.query.collection,
-                deleted: true,
-              });
-            } catch (error) {
+              client.close();
+            })
+            .catch((error) => {
               resolve(new BadRequest('Erreur dans la requête'));
-            }
-            client.close();
-          }).catch((error) => {
-            resolve(new BadRequest('Erreur dans la requête'));
-          });
-          
+            });
         }
         resolve(new BadRequest('Erreur dans la requête'));
       }
-      
     });
   }
-
-  
 }
 
 export const getOptions = (app) => {
