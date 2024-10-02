@@ -71,6 +71,18 @@ SUPER_ADM_ID=admuser
 SUPER_ADM_PWD=passuser
 ```
 
+## Préparer votre backend (creation du dossier 'dist')
+
+`bun run build`
+
+## Si vous souhaiter changer l'icone 'fbavatar' de l'application
+
+`bun run gen:logo  `
+
+`bun run  dev:icons`
+
+`bun run build`
+
 ## Exécuter le backend Feathersjs et la base de donnée Mongodb (LISTEN_MONGODB_PORT) et le backend (LISTEN_BACKEND_PORT)
 
 ```bash
