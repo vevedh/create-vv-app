@@ -1,12 +1,4 @@
----
-editLink: false
-prev:
-  text: 'Précédent'
-next:
-  text: 'Suivant'
----
-
-# Les Base de la première configuration
+# Comment l'utiliser ?
 
 ## Possibilité de créer directement l'application sans utiliser git
 
@@ -113,17 +105,3 @@ bun run format
 ```bash
 bun run build
 ```
-
-## Exécuter l'application dans votre Docker Desktop
-
-```
-bun dev:backend
-```
-
-## Modifier la configuration du Frondend
-
-Voir [Configuration quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
-
-## Modifier le Backend
-
-Voir [Configuration Feathersjs](https://feathersjs.com)

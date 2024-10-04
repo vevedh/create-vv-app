@@ -1,77 +1,73 @@
-import Unocss from 'unocss/vite'
-import { defineConfig } from 'vitepress'
-import { version } from '../../package.json'
-import { fileURLToPath } from 'node:url'
-import { withPwa } from '@vite-pwa/vitepress'
+import Unocss from 'unocss/vite';
+import { defineConfig } from 'vitepress';
+import { version } from '../../package.json';
+import { fileURLToPath } from 'node:url';
+import { withPwa } from '@vite-pwa/vitepress';
 
-export default withPwa(defineConfig({
-  base: '/create-vv-app/',
-  head: [
-
-    [
-      'script',
-      {},
-      `document.getElementByClassName('desc').remove();`
-    ]
-  ],
-  description: 'Create VVApp. Crée à partir de Quasar et UnoCSS.',
-  markdown: {
-    headers: {
-      level: [0, 0],
+export default withPwa(
+  defineConfig({
+    base: '/create-vv-app/',
+    head: [['script', {}, `document.getElementByClassName('desc').remove();`]],
+    description: 'Create VVApp. Crée à partir de Quasar et UnoCSS.',
+    markdown: {
+      headers: {
+        level: [0, 0],
+      },
     },
-  },
-  themeConfig: {
-    footer: {
-      message: 'Create VVApp Starter',
-      copyright: 'Copyright © 2024 Vevedh Freeman',
-    },
-    search: {
-      provider: 'local',
-    },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vevedh/create-vv-app' },
-    ],
-    editLink: {
-      pattern: 'https://github.com/create-vv-app/edit/main/docs/:path',
-      text: 'Modifier la page sur GitHub',
-    },
-    nav: nav(),
-    sidebar: {
-      '/guide/': sidebarGuide(),
-      '/config/': sidebarConfig(),
-    },
-    /* blog: {
+    themeConfig: {
+      footer: {
+        message: 'Create VVApp Starter',
+        copyright: 'Copyright © 2024 Vevedh Freeman',
+      },
+      search: {
+        provider: 'local',
+      },
+      socialLinks: [
+        { icon: 'github', link: 'https://github.com/vevedh/create-vv-app' },
+      ],
+      editLink: {
+        pattern: 'https://github.com/create-vv-app/edit/main/docs/:path',
+        text: 'Modifier la page sur GitHub',
+      },
+      nav: nav(),
+      sidebar: {
+        '/guide/': sidebarGuide(),
+        '/config/': sidebarConfig(),
+      },
+      /* blog: {
        title: 'My Blog',
        description: 'Some articles for sample Blog',
      }, */
-
-  },
-  title: 'Create VVApp Starter',
-  vite: {
-    resolve: {
-      alias: [
-        {
-          find: /^\/VPLink\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./components/DocAfter.vue', import.meta.url)
-          )
-        }
-      ]
     },
-    plugins: [
-      Unocss({
-        configFile: '../../unocss.config.ts',
-      }),
-    ],
-  },
-  pwa: {
-    strategies: 'generateSW', // <== if omitted, defaults to `generateSW`  
-    workbox: { /* your workbox configuration if any */ },
-    experimental: {
-      includeAllowlist: true
-    }
-  }
-}))
+    title: 'Create VVApp Starter',
+    vite: {
+      resolve: {
+        alias: [
+          {
+            find: /^\/VPLink\.vue$/,
+            replacement: fileURLToPath(
+              new URL('./components/DocAfter.vue', import.meta.url),
+            ),
+          },
+        ],
+      },
+      plugins: [
+        Unocss({
+          configFile: '../../unocss.config.ts',
+        }),
+      ],
+    },
+    pwa: {
+      strategies: 'generateSW', // <== if omitted, defaults to `generateSW`
+      workbox: {
+        /* your workbox configuration if any */
+      },
+      experimental: {
+        includeAllowlist: true,
+      },
+    },
+  }),
+);
 
 function nav() {
   return [
@@ -108,7 +104,7 @@ function nav() {
         },
       ],
     },
-  ]
+  ];
 }
 
 function sidebarGuide() {
@@ -116,18 +112,14 @@ function sidebarGuide() {
     {
       text: 'Introduction',
       collapsible: true,
-      items: [
-        { text: 'Comment l\'utiliser ?', link: '/guide/' },
-      ],
+      items: [{ text: "Comment l'utiliser ?", link: '/guide/using' }],
     },
     {
       text: 'Fonctions',
       collapsible: true,
-      items: [
-        { text: 'UnoCSS', link: '/guide/features/unocss' },
-      ],
+      items: [{ text: 'UnoCSS', link: '/guide/features/unocss' }],
     },
-  ]
+  ];
 }
 
 function sidebarConfig() {
@@ -139,5 +131,5 @@ function sidebarConfig() {
         { text: 'UnoCSS', link: '/config/unocss' },
       ],
     },
-  ]
+  ];
 }

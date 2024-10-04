@@ -37,7 +37,7 @@
     "docs:preview": "vitepress preview docs",
     "dev": "dotenvx run -f .env -- quasar dev",
     "backend:docker": "dotenvx run -f .env -- nodemon --watch ./api --watch ./dist --watch ./package.json ./api",
-    "dev:backend": "dotenvx run -f .env -- docker compose  --env-file .env  -f \"docker-compose-prod.yml\" up -d --build mongo backend",
+    "dev:backend": "bun run build && dotenvx run -f .env -- docker compose  --env-file .env  -f \"docker-compose-prod.yml\" up -d --build mongo backend",
     "dev:mongodb": "dotenvx run -f .env -- docker compose  -f \"docker-compose-mongodb.yml\" up -d --build mongo",
     "dev:docker": "dotenvx run -f .env -- quasar build && docker compose  -f \"docker-compose-prod.yml\" up -d",
     "dev:kill:mongodb": "dotenvx run -f .env -- docker compose -f \"docker-compose-mongodb.yml\" kill mongo",
