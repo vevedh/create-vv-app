@@ -15,9 +15,10 @@ export default withPwa(
       },
     },
     themeConfig: {
+      logo: '/fbavatar.png',
       footer: {
         message: 'Create VVApp Starter',
-        copyright: 'Copyright © 2024 Vevedh Freeman',
+        copyright: 'Copyright © 2024 Hervé de CHAVIGNY',
       },
       search: {
         provider: 'local',

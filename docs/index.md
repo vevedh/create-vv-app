@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Create VVApp
-  text: Modele d'application cross-platform
+  text: Modele d'application web cross-platform
   tagline: Ce Modèle est Cross-platform. Construit avec Quasar Framework et Feathersjs en Backend.
   actions:
     - theme: brand
