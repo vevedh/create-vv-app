@@ -66,7 +66,7 @@
     "@feathersjs/socketio": "^5.0.30",
     "@feathersjs/socketio-client": "^5.0.30",
     "@feathersjs/transport-commons": "^5.0.30",
-    "@phasme/cli": "1.2.55",
+    "@phasme/cli": "1.2.56",
     "@quasar/cli": "^2.4.1",
     "@quasar/extras": "^1.16.12",
     "@quasar/icongenie": "^4.0.0",
