@@ -25,6 +25,11 @@ export default withPwa(
       },
       socialLinks: [
         { icon: 'github', link: 'https://github.com/vevedh/create-vv-app' },
+        { icon: 'npm', link: 'https://www.npmjs.com/package/@phasme/cli' },
+        {
+          icon: 'linkedin',
+          link: 'www.linkedin.com/in/herve-de-chavigny-15b63082',
+        },
       ],
       editLink: {
         pattern: 'https://github.com/create-vv-app/edit/main/docs/:path',
