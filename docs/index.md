@@ -5,6 +5,9 @@ hero:
   name: Create VVApp
   text: Modele d'application web cross-platform
   tagline: Ce Modèle est Cross-platform. Construit avec Quasar Framework et Feathersjs en Backend.
+  image:
+    src: /fbavatar_hero.png
+    alt: Create VVApp - Super Application
   actions:
     - theme: brand
       text: Guide

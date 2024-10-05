@@ -3,9 +3,12 @@ import { defineConfig } from 'vitepress';
 import { version } from '../../package.json';
 import { fileURLToPath } from 'node:url';
 import { withPwa } from '@vite-pwa/vitepress';
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
+import { groupIconMdPlugin } from 'vitepress-plugin-group-icons';
 
 export default withPwa(
   defineConfig({
+    lang: 'fr-FR',
     base: '/create-vv-app/',
     head: [['script', {}, `document.getElementByClassName('desc').remove();`]],
     description: 'Create VVApp. Crée à partir de Quasar et UnoCSS.',
@@ -13,7 +16,20 @@ export default withPwa(
       headers: {
         level: [0, 0],
       },
+      theme: {
+        light: 'vitesse-light',
+        dark: 'vitesse-dark',
+      },
+      codeTransformers: [
+        transformerTwoslash({
+          processHoverInfo: (info) => info.replace(/_unocss_core\./g, ''),
+        }),
+      ],
+      config(md) {
+        md.use(groupIconMdPlugin);
+      },
     },
+
     themeConfig: {
       logo: '/fbavatar.png',
       footer: {

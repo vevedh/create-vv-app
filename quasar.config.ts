@@ -7,22 +7,18 @@ import { configure } from 'quasar/wrappers';
 import { fileURLToPath } from 'node:url';
 import { feathersPiniaAutoImport } from 'feathers-pinia';
 import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
 import path from 'node:path';
+import { groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 //import { presetUno } from '@unocss/preset-uno'
 
-
 //import { kill } from 'node:process';
-
-
 
 //import { viteExpressApp } from '@eslym/vite-plugin-express-app';
 //import { main } from './api/app_dev.js';
 
 export default configure((ctx) => {
-
-
-  console.log('Context :', process.env.LOGO_PATH)
-
+  console.log('Context :', process.env.LOGO_PATH);
 
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -35,7 +31,6 @@ export default configure((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'], //
-
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -53,13 +48,10 @@ export default configure((ctx) => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
-
       target: {
         browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
         node: 'node20',
       },
-
-
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
@@ -72,7 +64,7 @@ export default configure((ctx) => {
       // analyze: true,
       env: {
         LISTEN_BACKEND_PORT: process.env.LISTEN_BACKEND_PORT,
-        LOGO_PATH: process.env.LOGO_PATH
+        LOGO_PATH: process.env.LOGO_PATH,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -83,21 +75,29 @@ export default configure((ctx) => {
       extendViteConf(viteConf: any, { isServer, isClient }) {
         Object.assign(viteConf.resolve.alias, {
           '@': path.join(__dirname, './src'),
-          '~': path.join(__dirname, './src')
-        })
+          '~': path.join(__dirname, './src'),
+        });
       },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
+        ['unocss/vite', {}],
         [
-          'unocss/vite',
+          'vitepress-plugin-group-icons',
           {
-
+            customIcon: {
+              postcss: 'vscode-icons:file-type-postcss',
+            },
           },
         ],
+
         /*((ctx.dev === true) && (import.meta.env?.SOCKET_URL != ''))
           ? feathers({ app: './api/app_dev.js', port: 23030 })
           : undefined,*/ //{ app: './api/app_dev.js', port: 23030 }express('./api/app_dev.js')express({ middlewareFiles: './api' })
+        Components({
+          dirs: ['.vitepress/theme/components'],
+          include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        }),
         AutoImport({
           imports: [
             'vue',
@@ -224,12 +224,12 @@ export default configure((ctx) => {
       workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       swFilename: 'sw.js',
       manifestFilename: 'manifest.json',
-      extendManifestJson(json) { },
+      extendManifestJson(json) {},
       useCredentialsForManifestTag: true,
       injectPwaMetaTags: false,
-      extendPWACustomSWConf(esbuildConf) { },
-      extendGenerateSWOptions(cfg) { },
-      extendInjectManifestOptions(cfg) { }
+      extendPWACustomSWConf(esbuildConf) {},
+      extendGenerateSWOptions(cfg) {},
+      extendInjectManifestOptions(cfg) {},
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
