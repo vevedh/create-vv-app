@@ -82,22 +82,19 @@ export default configure((ctx) => {
 
       vitePlugins: [
         ['unocss/vite', {}],
-        [
-          'vitepress-plugin-group-icons',
-          {
-            customIcon: {
-              postcss: 'vscode-icons:file-type-postcss',
-            },
+        /*groupIconVitePlugin({
+          customIcon: {
+            postcss: 'vscode-icons:file-type-postcss',
           },
-        ],
+        }),*/
 
         /*((ctx.dev === true) && (import.meta.env?.SOCKET_URL != ''))
           ? feathers({ app: './api/app_dev.js', port: 23030 })
           : undefined,*/ //{ app: './api/app_dev.js', port: 23030 }express('./api/app_dev.js')express({ middlewareFiles: './api' })
-        Components({
+        /* Components({
           dirs: ['.vitepress/theme/components'],
-          include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        }),
+          include: [/\.vue$/, /\.vue\?vue/, /\.md$/, /\.ts$/],
+        }),*/
         AutoImport({
           imports: [
             'vue',

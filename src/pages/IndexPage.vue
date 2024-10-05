@@ -1,6 +1,11 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
+    <example-component
+      title="Example component"
+      active
+      :todos="todos"
+      :meta="meta"
+    ></example-component>
   </q-page>
 </template>
 
@@ -11,28 +16,27 @@ import ExampleComponent from 'components/ExampleComponent.vue';
 
 const appStore = useAppStore();
 
-const { feathersClient } = useFeathers()
+const { feathersClient } = useFeathers();
 
-console.log('Feathers services', feathersClient)
+console.log('Feathers services', feathersClient);
 
 const settings = ref({
   darkMode: true,
   notifications: true,
   bgcolor: 'red',
-})
-
+});
 
 const saveSettings = async () => {
-  await appStore.writeSettings(settings.value)
-}
+  await appStore.writeSettings(settings.value);
+};
 
 onMounted(async () => {
   //await appStore.writeSettings(settings.value)
-  await appStore.readSettings()
-  console.log('Settings :', appStore.settings)
-})
+  await appStore.readSettings();
+  console.log('Settings :', appStore.settings);
+});
 
-console.log('Feathers Client :', feathersClient)
+console.log('Feathers Client :', feathersClient);
 
 defineOptions({
   name: 'IndexPage',

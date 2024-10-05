@@ -2,11 +2,23 @@
   "extends": "@quasar/app-vite/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
+    "target": "es2018",
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "types": ["node", "vite/client"],
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
+
   "exclude": [
     "./dist",
+    "./docs",
     "./.quasar",
     "./node_modules",
     "./src-capacitor",
