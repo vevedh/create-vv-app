@@ -10,11 +10,14 @@
     "Component": true,
     "ComponentPublicInstance": true,
     "ComputedRef": true,
+    "DirectiveBinding": true,
     "EffectScope": true,
     "ExtractDefaultPropTypes": true,
     "ExtractPropTypes": true,
     "ExtractPublicPropTypes": true,
     "InjectionKey": true,
+    "MaybeRef": true,
+    "MaybeRefOrGetter": true,
     "PropType": true,
     "Ref": true,
     "VNode": true,
@@ -46,6 +49,7 @@
     "defineGetters": true,
     "defineSetters": true,
     "defineValues": true,
+    "dom": true,
     "eagerComputed": true,
     "effectScope": true,
     "extendRef": true,
@@ -322,9 +326,6 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true,
-    "DirectiveBinding": true,
-    "MaybeRef": true,
-    "MaybeRefOrGetter": true
+    "whenever": true
   }
 }

@@ -40,6 +40,7 @@ declare global {
   const defineGetters: typeof import('feathers-pinia')['defineGetters']
   const defineSetters: typeof import('feathers-pinia')['defineSetters']
   const defineValues: typeof import('feathers-pinia')['defineValues']
+  const dom: typeof import('quasar')['dom']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
@@ -364,6 +365,7 @@ declare module 'vue' {
     readonly defineGetters: UnwrapRef<typeof import('feathers-pinia')['defineGetters']>
     readonly defineSetters: UnwrapRef<typeof import('feathers-pinia')['defineSetters']>
     readonly defineValues: UnwrapRef<typeof import('feathers-pinia')['defineValues']>
+    readonly dom: UnwrapRef<typeof import('quasar')['dom']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
