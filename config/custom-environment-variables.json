@@ -1,6 +1,6 @@
 {
   "port": {
-    "__name": "PORT",
+    "__name": "LISTEN_BACKEND_PORT",
     "__format": "number"
   },
   "host": "HOSTNAME",

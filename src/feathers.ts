@@ -5,15 +5,18 @@ import socketio from '@feathersjs/socketio-client';
 import { createPiniaClient } from 'feathers-pinia';
 import io from 'socket.io-client';
 import { pinia } from './stores/index';
-
+import { error } from 'console';
+import { Notify } from 'quasar';
 type ServiceTypes = Record<string, FeathersService>;
 
-console.log('env :', process.env);
+console.log('RUN env :', process.env.DEV);
+const isDev = process.env.DEV || process.env.DEV === 'true';
 
 const socket = io(
-  import.meta.env.DEV == true
+  isDev
     ? `http://localhost:${process.env.LISTEN_BACKEND_PORT}`
-    : 'http://localhost:3030',
+    : 'http://localhost:80',
+  { transports: ['websocket'] },
 );
 
 const storageKey = 'feathers-jwt';
@@ -31,9 +34,15 @@ export const feathersClient = feathers<ServiceTypes>()
       storage: typeof window !== 'undefined' ? window.localStorage : storage,
     }),
   );
-/*
- .configure(authenticationClient({ storage: (typeof window !== 'undefined') ? window.localStorage : null }))
- */ // (global !== undefined) ? global.localStorage :
+
+socket.io.engine.transport.on('error', () => {
+  Notify.create({
+    color: 'negative',
+    message: 'Impossible de se connecter au Backend !',
+    icon: 'warning',
+    position: 'top',
+  });
+});
 
 export const api = createPiniaClient(feathersClient, {
   pinia,
@@ -45,9 +54,7 @@ export const api = createPiniaClient(feathersClient, {
     return data;
   },
   syncWithStorage: true,
-  services: {
-    
-  },
+  services: {},
   whitelist: [],
   paramsForServer: [],
   skipGetIfExists: true,

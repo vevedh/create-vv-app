@@ -9,7 +9,7 @@
 > npm i -g @phasme/cli
 > ```
 
-- Une fois le package _@phasme/cli_ installé créer une nouvelle à partir du template avec la commande suivante:
+- Une fois le package _@phasme/cli_ installé créer une nouvelle application à partir du template avec la commande suivante:
   ```
   npx phasme generate app
   ```

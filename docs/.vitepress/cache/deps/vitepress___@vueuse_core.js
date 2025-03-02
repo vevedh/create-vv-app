@@ -40,7 +40,7 @@ import {
   version,
   watch,
   watchEffect
-} from "./chunk-CZX7GLWV.js";
+} from "./chunk-L2JNJ22P.js";
 
 // node_modules/vitepress/node_modules/@vueuse/core/node_modules/@vueuse/shared/index.mjs
 function computedEager(fn, options) {

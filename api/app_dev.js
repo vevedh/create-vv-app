@@ -19,6 +19,7 @@ import { authentication } from './authentication.js';
 import { services } from './services/index.js';
 import { channels } from './channels.js';
 import * as kill from 'kill-port';
+import { verify } from 'crypto';
 //import swagger from 'feathers-swagger'
 //import { SwaggerUIBundle, SwaggerUIStandalonePreset } from 'swagger-ui-dist'
 //import nocache from 'nocache'
@@ -41,7 +42,7 @@ export const main = () => {
 
   app.use(
     cors({
-      origin: app.get('origins'),
+      origin: [...app.get('origins'), 'http://localhost:' + app.get('port')],
       //origin: true,
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       allowedHeaders: ['Access-Control-Allow-Origin'],
@@ -190,6 +191,19 @@ export const main = () => {
           context.app.service('users').create({
             username: context.app.get('site_adm_id'),
             password: context.app.get('site_adm_pwd'),
+            role: 'admin',
+            email: process.env.mail_smtp,
+            isVerified: true,
+            resendVerifySignup: true,
+            verifyToken: '12345',
+            verifyShortToken: '12345',
+            verifyExpires: Date.now() + 1000 * 60 * 60 * 24 * 365,
+            verifyChanges: [],
+            resetToken: '12345',
+            resetShortToken: '12345',
+            resetExpires: Date.now() + 1000 * 60 * 60 * 24 * 365,
+            resetChanges: [],
+            resetAttempts: 0,
           });
         }
         /* if (context.app.get('mongodbClient') && !isMongo) {

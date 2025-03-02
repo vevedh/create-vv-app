@@ -8,8 +8,10 @@ import { fileURLToPath } from 'node:url';
 import { feathersPiniaAutoImport } from 'feathers-pinia';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+
 import path from 'node:path';
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons';
+import settings from './public/settings.json';
 //import { presetUno } from '@unocss/preset-uno'
 
 //import { kill } from 'node:process';
@@ -19,15 +21,22 @@ import { groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 
 export default configure((ctx) => {
   console.log('Context :', process.env.LOGO_PATH);
+  console.log('Settings :', settings);
 
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
-
+    resolve: {
+      alias: {
+        // If using the runtime-only build
+        '~': `${path.resolve(__dirname, './src')}/`,
+        '@': `${path.resolve(__dirname, './src')}/`,
+      },
+    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['unocss', 'i18n', 'axios', 'feathers-pinia', 'vmotion'],
+    boot: ['unocss', 'i18n', 'axios', 'feathers-pinia', 'vmotion', 'formkit'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'], //
@@ -65,6 +74,7 @@ export default configure((ctx) => {
       env: {
         LISTEN_BACKEND_PORT: process.env.LISTEN_BACKEND_PORT,
         LOGO_PATH: process.env.LOGO_PATH,
+        DEV: process.env.NODE_ENV,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -81,6 +91,13 @@ export default configure((ctx) => {
       // viteVuePluginOptions: {},
 
       vitePlugins: [
+        [
+          'unplugin-vue-components/vite',
+          {
+            // relative paths to the directory to search for components.
+            dirs: ['src/components/**'],
+          },
+        ],
         ['unocss/vite', {}],
         /*groupIconVitePlugin({
           customIcon: {
@@ -95,6 +112,15 @@ export default configure((ctx) => {
           dirs: ['.vitepress/theme/components'],
           include: [/\.vue$/, /\.vue\?vue/, /\.md$/, /\.ts$/],
         }),*/
+        Components({
+          // https://github.com/unplugin/unplugin-vue-components#usage
+          dirs: [
+            // To debug: DEBUG=unplugin-vue-components:glob pnpm dev
+            'src/components/**/*.vue',
+            'src/modules/**/components/**/*.vue',
+          ],
+          dts: 'src/components.d.ts',
+        }),
         AutoImport({
           imports: [
             'vue',
@@ -159,22 +185,22 @@ export default configure((ctx) => {
     framework: {
       config: {
         brand: {
-          primary: '#027BE3',
-          secondary: '#26A69A',
-          accent: '#9C27B0',
+          primary: settings.brand.primary, //'#027BE3',
+          secondary: settings.brand.secondary, //'#26A69A',
+          accent: settings.brand.accent, //'#9C27B0',
 
-          dark: '#1d1d1d',
-          'dark-page': '#121212',
+          dark: settings.brand.dark, //'#1d1d1d',
+          'dark-page': settings.brand['dark-page'], //'#121212',
 
-          positive: '#21BA45',
-          negative: '#C10015',
-          info: '#31CCEC',
-          warning: '#F2C037',
+          positive: settings.brand.positive, //'#21BA45',
+          negative: settings.brand.negative, //'#C10015',
+          info: settings.brand.info, //'#31CCEC',
+          warning: settings.brand.warning, //'#F2C037',
         },
       },
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      lang: 'fr', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -184,12 +210,26 @@ export default configure((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: [
+        'Loading',
+        'LocalStorage',
+        'SessionStorage',
+        'Cookies',
+        'Dialog',
+        'Notify',
+        'SessionStorage',
+        'Meta',
+        'Dark',
+        'BottomSheet',
+        'LoadingBar',
+        'Platform',
+      ],
     },
 
     // animations: 'all', // --- includes all animations
+    // animations: [], // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: [],
+    animations: 'all',
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
     // sourceFiles: {

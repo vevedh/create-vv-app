@@ -1,5 +1,18 @@
-<template>
+<!--<template>
   <router-view />
+</template>-->
+<template>
+  <Suspense>
+    <!-- composant avec des dépendances asynchrones imbriquées -->
+    <router-view />
+
+    <!-- état de chargement via le slot #fallback -->
+    <template #fallback>
+      <q-page class="row items-center justify-evenly">
+        Chargment en cours...
+      </q-page>
+    </template>
+  </Suspense>
 </template>
 
 <script setup lang="ts">

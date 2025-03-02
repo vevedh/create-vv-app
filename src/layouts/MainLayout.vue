@@ -8,12 +8,11 @@
           round
           icon="menu"
           aria-label="Menu"
-          class="animate animate-bounce"
           @click="toggleLeftDrawer"
-        />
+        /><!-- class="animate animate-bounce" -->
 
         <q-toolbar-title class="dark:text-primary text-white">
-          Quasar App
+          Create VV App
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -23,32 +22,41 @@
           flat
           round
           @click="$q.dark.toggle()"
-          :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'"
+          :icon="$q.dark.isActive ? 'wb_sunny' : 'nights_stay'"
         />
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above elevated>
+    <!--<q-drawer v-model="leftDrawerOpen" show-if-above elevated>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> Menu </q-item-label>
 
-        <EssentialLink
+        <LeftMenuLink
           v-for="link in linksList"
           :key="link.title"
           v-bind="link"
         />
       </q-list>
-    </q-drawer>
+    </q-drawer>-->
+
+    <LeftMenu v-model="leftDrawerOpen" :linksList="linksList" />
 
     <q-page-container>
       <router-view class="h-full" v-slot="{ Component }">
-        <transition
-          appear
-          enter-active-class="animated fadeIn"
-          leave-active-class="animated fadeOut"
-        >
-          <component :is="Component" />
-        </transition>
+        <Suspense>
+          <transition
+            appear
+            enter-active-class="animated fadeIn"
+            leave-active-class="animated fadeOut"
+          >
+            <component :is="Component" />
+          </transition>
+          <template #fallback>
+            <q-page class="row items-center justify-evenly">
+              Chargment en cours...
+            </q-page>
+          </template>
+        </Suspense>
       </router-view>
     </q-page-container>
   </q-layout>
@@ -56,9 +64,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, {
-  EssentialLinkProps,
-} from 'components/EssentialLink.vue';
+import LeftMenu from 'components/LeftMenu.vue';
+import { LeftMenuLinkProps } from 'components/LeftMenuLink.vue';
+//import LeftMenuLink from 'src/components/LeftMenuLink.vue';
 
 const $q = useQuasar();
 const auth = useAuthStore();
@@ -68,7 +76,7 @@ defineOptions({
   name: 'MainLayout',
 });
 
-const linksList: EssentialLinkProps[] = [
+const linksList: LeftMenuLinkProps[] = [
   {
     title: 'Docs',
     caption: 'quasar.dev',
@@ -125,7 +133,7 @@ function toggleLeftDrawer() {
 }
 </script>
 
-<style scope>
+<style type="text/css" scope>
 #app :is(.dark .dark\:bg-blue) {
   --un-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--un-bg-opacity));
@@ -140,4 +148,14 @@ function toggleLeftDrawer() {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
+/*
+html {
+  background: radial-gradient(
+    circle,
+    rgba(248, 250, 251, 1) 20%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background-size: cover;
+}
+*/
 </style>

@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/defaultForm.vue'), //MainLayout.vue
     children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
   },
   {
@@ -15,7 +15,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admindb',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/admin/admin_db.vue') }],
+    children: [
+      { path: '', component: () => import('pages/admin/admin_db.vue') },
+    ],
+  },
+  {
+    path: '/form',
+    component: () => import('layouts/defaultForm.vue'),
+    children: [{ path: '', component: () => import('pages/form/index.vue') }],
   },
 
   // Always leave this as last one,

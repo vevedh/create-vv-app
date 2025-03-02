@@ -24,6 +24,7 @@
     "WritableComputedRef": true,
     "asyncComputed": true,
     "autoResetRef": true,
+    "colors": true,
     "computed": true,
     "computedAsync": true,
     "computedEager": true,
@@ -162,6 +163,7 @@
     "useBroadcastChannel": true,
     "useBrowserLocation": true,
     "useCached": true,
+    "useClickOutside": true,
     "useClipboard": true,
     "useClipboardItems": true,
     "useCloned": true,
@@ -194,6 +196,7 @@
     "useElementVisibility": true,
     "useEventBus": true,
     "useEventListener": true,
+    "useEventOutside": true,
     "useEventSource": true,
     "useEyeDropper": true,
     "useFavicon": true,
@@ -274,6 +277,7 @@
     "useSpeechRecognition": true,
     "useSpeechSynthesis": true,
     "useStepper": true,
+    "useSteps": true,
     "useStorage": true,
     "useStorageAsync": true,
     "useStyleTag": true,
@@ -301,6 +305,7 @@
     "useUserMedia": true,
     "useVModel": true,
     "useVModels": true,
+    "useValidationMessages": true,
     "useVibrate": true,
     "useVirtualList": true,
     "useWakeLock": true,
@@ -326,6 +331,8 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true
+    "whenever": true,
+    "useFormStore": true,
+    "useFormHistoryStore": true
   }
 }

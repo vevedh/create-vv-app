@@ -42,7 +42,17 @@
         </q-card-section>
         <q-separator />
         <q-card-section class="q-pb-none">
-          <q-form class="q-pa-md q-col-gutter-md">
+          <q-fab
+            color="secondary"
+            icon="add"
+            class="absolute size-10"
+            style="top: 0; right: 12px; transform: translateY(-70%)"
+          ></q-fab>
+          <q-form
+            class="q-pa-md q-col-gutter-md"
+            id="loginForm"
+            ref="loginForm"
+          >
             <q-input
               filled
               bottom-slots
@@ -55,6 +65,9 @@
               :dense="dense"
               lazy-rules
             >
+              <q-tooltip anchor="top left" self="top middle">
+                Enregistrement
+              </q-tooltip>
             </q-input>
             <q-input
               filled
@@ -93,6 +106,8 @@
         >
           <div class="q-gutter-xl">
             <q-btn
+              ref="loginBtn"
+              autofocus
               color="primary"
               icon="lock"
               text-color="white"
@@ -104,7 +119,13 @@
           </div>
         </q-card-actions>
         <q-card-section class="col text-center" separator>
-          Mot de passe oublié ? <a href="#" class="text-primary">Cliquer ici</a>
+          Mot de passe oublié ?
+          <a
+            href="#"
+            class="text-primary"
+            @click="appStore.sendForgotPassword('herve@dechavigny.fr')"
+            >Cliquer ici</a
+          >
         </q-card-section>
       </q-card>
     </div>
@@ -112,12 +133,13 @@
 </template>
 
 <script setup lang="ts">
-import { set } from '@vueuse/core';
+const $q = useQuasar();
 
 const authStore = useAuthStore();
 const appStore = useAppStore();
 const settings = ref(appStore.settings);
 const router = useRouter();
+const route = useRoute();
 const { api } = useFeathers();
 
 const variant = ref();
@@ -157,11 +179,42 @@ const onSubmit = (email: string, password: string) => {
     .catch((error: any) => {
       // eslint-disable-next-line no-console
       console.log(error);
+      if (settings.value?.errorNotify) {
+        $q.notify({
+          color: 'negative',
+          message: error.message,
+          icon: 'warning',
+          position: 'top',
+        });
+      } else {
+        $q.dialog({
+          title: ' Erreur',
+          message: error.message,
+          ok: {
+            push: true,
+            label: 'Ok',
+          },
+          persistent: true,
+        })
+          .onOk(() => {
+            console.log('>>>> OK');
+          })
+          .onDismiss(() => {
+            console.log('I am triggered on both OK');
+          });
+      }
+      /**/
+
       //dialogError.value = true
     });
 };
 
+onBeforeMount(async () => {
+  //console.log('Settings route :', route);
+});
+
 onMounted(async () => {
+  console.log('Settings route :', route.query);
   //await appStore.writeSettings(settings.value)
   await appStore.readSettings();
   settings.value = appStore.settings;
@@ -183,6 +236,12 @@ onMounted(async () => {
     !settings.value.hasOwnProperty('requiredField')
   ) {
     settings.value.requiredField = 'Champ obligatoire !';
+  }
+  if (
+    settings.value.errorNotify === true ||
+    !settings.value.hasOwnProperty('errorNotify')
+  ) {
+    settings.value.errorNotify = true;
   }
 });
 </script>

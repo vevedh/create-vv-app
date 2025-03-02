@@ -8,7 +8,8 @@ Veve App est un modèle d'application Web multiplatform (quasar framework) + uno
 ## Prérequis
 
 - Nodejs 20+
-- Docker Desktop (Windows) ou Docker (linux)
+- [Bun](https://bun.sh/docs/installation)
+- [Docker Desktop: The #1 Containerization Tool for Developers | Docker](https://www.docker.com/products/docker-desktop/)
 
 ## Résumé
 
@@ -17,4 +18,4 @@ Il est constitué d'un Frondend et d'un Backend (dossier 'api') et d'une base de
 Les Options futures sont :
 
 - Multi bases de données (utilisation de séquelize)
-- Ajout d'une passerelle d'authentification par Keycloak
+- Ajout d'une passerelle d'authentification avec [Keycloak](https://www.keycloak.org/)
